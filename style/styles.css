@@ -1,0 +1,262 @@
+/* Reset básico */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body, html {
+    height: 100%;
+    background-color: #07090E;
+    color: white;
+}
+
+/* Navbar superior */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background-color: #161B25;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.navbar .logo {
+    font-size: 30px;
+    font-weight: bold;
+    color: #16c4fe;
+}
+
+.navbar .login {
+    background-color: #16c4fe;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 16px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.navbar .login:hover {
+    background-color: #1ab9d9;
+}
+
+/* Barra de búsqueda */
+.search {
+    width: max-content;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius: 28px;
+    border: 2px solid #9E9E9E;
+}
+
+.search-input {
+    background-color: transparent;
+    caret-color: #9E9E9E;
+    color: white;
+    border: none;
+    margin-left: 14px;
+    outline: none;
+    width: 300px;
+    flex: 1;
+}
+
+.search-input::placeholder {
+    font-size: 15px;
+}
+
+.search:hover,
+.search:focus-within {
+    border: #16c4fe 2px solid;
+}
+
+.search-icon {
+    color: #9E9E9E;
+}
+
+/* Layout principal */
+.layout {
+    font-weight: bold;
+    display: flex;
+    height: 100vh;
+    padding-top: 60px;
+    /* para no tapar navbar */
+    overflow: hidden;
+}
+
+/* Sidebar Izquierdo */
+.sidebar-left {
+    width: 250px;
+    background-color: #161B25;
+    overflow-y: visible;
+    padding: 15px 10px;
+    transition: background-color 0.3s ease;
+}
+
+/* Sidebar Derecho */
+.sidebar-right {
+    width: 250px;
+    background-color: #161B25;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+/* Contenido principal */
+.content {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto;
+    background-color: #0b0e17;
+}
+
+/* Menú y canales en sidebar izquierdo */
+.menu-item, .channel {
+    margin-top: 2px;
+    margin-bottom: 2px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.sidebar-left .menu-item:hover, .channel:hover {
+    background-color: rgba(217, 217, 217, 0.2);
+    border-radius: 5px;
+}
+
+.live-channels {
+    margin-top: 35px;
+}
+
+.menu-item {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Sidebar derecho tendencias */
+.sidebar-right .menu-item span {
+    color: #16c4fe;
+    font-weight: bold;
+}
+
+.sidebar-right .menu-item {
+    background-color: rgba(217, 217, 217, 0.2);
+    border-radius: 8px;
+}
+
+.sidebar-right .menu-item:hover {
+    background-color: rgba(217, 217, 217, 0.3);
+}
+
+.trends {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+}
+
+/* Canales en vivo */
+.channel {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 1px;
+    object-fit: cover;
+}
+
+.info {
+    flex-grow: 1;
+}
+
+.viewers {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 14px;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    background-color: #16c4fe;
+    border-radius: 50%;
+}
+
+.category {
+    font-size: 12px;
+    color: #9E9E9E;
+}
+
+/* Grilla de streams */
+.live-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 16px;
+    margin-top: 20px;
+}
+
+.stream-card {
+    background-color: #161B25;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.stream-card:hover {
+    background-color: rgba(22, 196, 254, 0.2);
+    transform: scale(1.03);
+    /* Zoom del 3% */
+}
+
+.stream-thumb {
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+}
+
+.stream-info {
+    padding: 0px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.stream-title {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.stream-category {
+    font-size: 12px;
+    color: #9E9E9E;
+}
+
+.stream-viewers {
+    font-size: 12px;
+    color: #16c4fe;
+    font-weight: bold;
+    margin-top: auto;
+    align-self: flex-start;
+}
+
+.just-chatting {
+    margin-top: 40px;
+}
