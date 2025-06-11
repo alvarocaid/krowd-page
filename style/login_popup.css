@@ -59,6 +59,21 @@
 
     .close-btn:hover { color: #1ab9d9; }
 
+    .close-btn-welcome,
+.close-btn-welcome:hover,
+.close-btn-welcome:focus {
+    background: white !important;
+    box-shadow: none !important;
+    border: none !important;
+    outline: none;
+    color: #fff;
+    border-radius: 0;
+}
+
+.close-btn-welcome:hover .material-symbols-outlined {
+    color: #01D2FC;
+}
+
     .popup-header {
       display: flex;
       flex-direction: column;
@@ -227,4 +242,51 @@
     min-width: 520px;
     width: 520px;
     max-width: 98vw;
+}
+
+.welcome-close-btn {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    background: none;
+    border: none;
+    color: #888;
+    font-size: 2rem;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    z-index: 10;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.welcome-close-btn:hover {
+    background: #fff;
+    color: #111216;
+}
+
+.signup-error-close-btn {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    background: none;
+    border: none;
+    color: #888;
+    font-size: 2rem;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    z-index: 10;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.signup-error-close-btn:hover {
+    background: #fff;
+    color: #111216;
 }
