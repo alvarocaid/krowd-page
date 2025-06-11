@@ -1,0 +1,13 @@
+.icono {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    margin-right: 12px;
+    vertical-align: middle;
+}
+.menu-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 0;
+}
