@@ -445,8 +445,7 @@ function login() {
     const clave = document.getElementById("clave").value;
 
     if (usuario === "admin" && clave === "1234") {
-        alert("Inicio de sesión exitoso");
-        closePopup();
+        window.location.href = "user-home.html"; // Redirige al home de usuario
     } else {
         openErrorPopup();
     }
