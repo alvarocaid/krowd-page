@@ -157,3 +157,68 @@
     .popup-footer a:hover {
       color: #1ab9d9;
     }
+
+    /* --- Error Popup --- */
+.error-popup-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.45);
+    backdrop-filter: blur(6px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+}
+.error-popup-box {
+    background: #111216;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+    padding: 2rem 2.5rem 1.5rem 2.5rem;
+    min-width: 320px;
+    max-width: 90vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    animation: popupIn 0.2s;
+}
+.error-message {
+    color: #ff2d2d;
+    font-size: 1.35rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 1.2rem;
+    padding-top: 2.5rem;
+}
+.error-close-btn {
+    position: absolute;
+    bottom: 100px;
+    left: 360px;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 2rem;
+    cursor: pointer;
+    border-radius: 50%;
+    padding: 0.2em;
+    transition: background 0.2s, color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.error-close-btn:hover {
+    background: #fff;
+    color: #111216;
+}
+.error-cancel-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1.5rem;
+}
+.error-cancel-icon .material-symbols-outlined {
+    color: #fff;
+    font-size: 3rem;
+    cursor: default;
+    user-select: none;
+}
