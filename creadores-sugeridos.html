@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Home</title>
+    <!-- Google Material Symbols -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+    <link rel="stylesheet" href="/style/styles.css" />
+    <link rel="stylesheet" href="/style/creadores-sugeridos.css" />
+</head>
+<body>
+
+    <!-- Navbar superior -->
+    <header class="navbar">
+        <div class="logo">Krowd</div>
+        <div class="search">
+            <span class="search-icon material-symbols-outlined">search</span>
+            <input type="search" placeholder="Buscar" class="search-input">
+        </div>
+        <div class="user-info">
+            <div class="user-item">
+                <span class="material-symbols-outlined">stars</span>
+                0 Créditos
+            </div>
+            <div class="user-item">
+                <span class="material-symbols-outlined">notifications</span>
+            </div>
+            <div class="user-item">
+                <span class="material-symbols-outlined">person</span>
+                xXCamiloXx
+            </div>
+        </div>
+
+    </header>
+
+    <div class="layout">
+        <!-- Sidebar Izquierdo -->
+        <aside class="sidebar-left">
+            <div class="menu">
+                <div class="menu-item">
+                    Home
+                    <span class="material-symbols-outlined">home</span>
+                </div>
+                <div class="menu-item">
+                    Explorar Categorías
+                    <span class="material-symbols-outlined">explore</span>
+                </div>
+                <div class="menu-item">
+                    Creadores Sugeridos
+                    <span class="material-symbols-outlined">emoji_people</span>
+                </div>
+                <div class="menu-item">
+                    Configurar
+                    <span class="material-symbols-outlined">settings</span>
+                </div>
+            </div>
+            <div class="live-channels">
+                <h3>Canales en Vivo</h3>
+                <!-- Lista de canales en vivo -->
+                <div class="channel">
+                    <img src="/assets/streamer1.png" class="avatar" alt="LuriShow">
+                    <div class="info">
+                        <div class="name">LuriShow</div>
+                        <div class="category">IRL</div>
+                    </div>
+                    <div class="viewers"><span class="dot"></span>1K</div>
+                </div>
+                <div class="channel">
+                    <img src="/assets/streamer2.png" class="avatar" alt="Canal 2">
+                    <div class="info">
+                        <div class="name">Shadowki</div>
+                        <div class="category">Just Chatting</div>
+                    </div>
+                    <div class="viewers"><span class="dot"></span>500</div>
+                </div>
+                <div class="channel">
+                    <img src="/assets/streamer3.png" class="avatar" alt="Canal 3">
+                    <div class="info">
+                        <div class="name">MakanAx</div>
+                        <div class="category">Música</div>
+                    </div>
+                    <div class="viewers"><span class="dot"></span>2K</div>
+                </div>
+                <div class="channel">
+                    <img src="/assets/streamer4.png" class="avatar" alt="Canal 4">
+                    <div class="info">
+                        <div class="name">PirulETv</div>
+                        <div class="category">Arte</div>
+                    </div>
+                    <div class="viewers"><span class="dot"></span>300</div>
+                </div>
+                <div class="channel">
+                    <img src="/assets/streamer5.png" class="avatar" alt="Canal 5">
+                    <div class="info">
+                        <div class="name">CamiloXX</div>
+                        <div class="category">Charlas</div>
+                    </div>
+                    <div class="viewers"><span class="dot"></span>800</div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Contenido principal -->
+        <main class="content">
+            <h1 style="color:#fff; font-size:2.5rem; font-weight: bold; margin-bottom: 2.2rem;">Creadores Sugeridos</h1>
+            <div class="suggested-list">
+                <div class="suggested-card">
+                    <img src="/assets/pirule.png" class="suggested-avatar" alt="PiruleTV">
+                    <div class="suggested-info">
+                        <div class="suggested-name">PiruleTV</div>
+                        <div class="suggested-desc">Arte y música en vivo</div>
+                        <span class="suggested-tag"># Música</span>
+                    </div>
+                    <a href="#" class="suggested-btn">Ver Canal</a>
+                </div>
+                <div class="suggested-card">
+                    <img src="/assets/prochon.png" class="suggested-avatar" alt="ProChonGuE">
+                    <div class="suggested-info">
+                        <div class="suggested-name">ProChonGuE</div>
+                        <div class="suggested-desc">PixelArt en vivo</div>
+                        <span class="suggested-tag"># PixelArt</span>
+                    </div>
+                    <a href="#" class="suggested-btn">Ver Canal</a>
+                </div>
+                <div class="suggested-card">
+                    <img src="/assets/makaxx.png" class="suggested-avatar" alt="MakaxX">
+                    <div class="suggested-info">
+                        <div class="suggested-name">MakaxX</div>
+                        <div class="suggested-desc">Videojuegos en vivo</div>
+                        <span class="suggested-tag"># Videojuegos</span>
+                    </div>
+                    <a href="#" class="suggested-btn">Ver Canal</a>
+                </div>
+                <div class="suggested-card">
+                    <img src="/assets/coderlive.png" class="suggested-avatar" alt="CoderLive">
+                    <div class="suggested-info">
+                        <div class="suggested-name">CoderLive</div>
+                        <div class="suggested-desc">Programación en vivo</div>
+                        <span class="suggested-tag"># Programación</span>
+                    </div>
+                    <a href="#" class="suggested-btn">Ver Canal</a>
+                </div>
+            </div>
+        </main>
+
+        <!-- Sidebar Derecho (Quitando chat en vivo) -->
+        <!-- <aside class="chat-sidebar">
+            <div class="chat-header">
+                CHAT EN VIVO
+            </div>
+            <div class="chat-messages">
+                <div class="chat-message"><span class="user" style="color:#ff7f50;">NekoFan33:</span> Esa jugada estuvo ÉPICA 🔥🔥🔥</div>
+                <div class="chat-message"><span class="user" style="color:#ffd700;">ProGamer77:</span> ¿Qué configuración de mouse usas?</div>
+                <div class="chat-message"><span class="user" style="color:#00e5ff;">Lau_Chan:</span> jajaja me morí con lo que dijiste 😂</div>
+                <div class="chat-message"><span class="user" style="color:#b388ff;">RataFPS:</span> saludos desde Chile bro 🇨🇱</div>
+                <div class="chat-message"><span class="user" style="color:#ff1744;">xXDarkModeXx:</span> dale otra oportunidad al sniper, ¡sí se puede!</div>
+                <div class="chat-message"><span class="user" style="color:#ff80ab;">AnaPixel:</span> ¿vas a hacer directo mañana también?</div>
+                <div class="chat-message"><span class="user" style="color:#fff;">ToxicNacho:</span> ¡ACTIVA LA CÁMARA QUE NO TE VEMOS! 😂</div>
+                <div class="chat-message"><span class="user" style="color:#64b5f6;">MarceloZzz:</span> llegó la noti justo cuando iba a dormir 😴</div>
+                <div class="chat-message"><span class="user" style="color:#ff7043;">elCompadre:</span> like si vienes por el clip viral de ayer</div>
+                <div class="chat-message"><span class="user" style="color:#fff176;">MafiusoYT:</span> ¡te ganaste mis 10 puntos bro, buen stream!</div>
+                <div class="chat-message"><span class="user" style="color:#00e676;">LuriNeo:</span> Te acabo de apoyar amigo</div>
+                <div class="chat-message"><span class="user" style="color:#fff;">Pinwelo:</span> Wow!</div>
+            </div>
+            <div class="chat-input-area">
+                <input type="text" class="chat-input" placeholder="Escribe un mensaje...">
+                <button class="chat-send-btn">
+                    <span class="material-symbols-outlined">send</span>
+                </button>
+            </div>
+            <div class="rewards-box">
+                <button class="rewards-title-btn">Ver recompensas</button>
+                <div class="rewards-list">
+                    <div class="reward-item">
+                        <span>Participar en Sorteo</span>
+                        <button class="reward-btn">Canjear</button>
+                        <span class="reward-cost">10 Créditos</span>
+                    </div>
+                    <div class="reward-item">
+                        <span>Sticker Personalizado</span>
+                        <button class="reward-btn">Canjear</button>
+                        <span class="reward-cost">20 Créditos</span>
+                    </div>
+                    <div class="reward-item">
+                        <span>Juega conmigo</span>
+                        <button class="reward-btn">Canjear</button>
+                        <span class="reward-cost">50 Créditos</span>
+                    </div>
+                    <div class="reward-item">
+                        <span>Emoji exclusivo</span>
+                        <button class="reward-btn">Canjear</button>
+                        <span class="reward-cost">40 Créditos</span>
+                    </div>
+                    <div class="reward-item">
+                        <span>Contenido exclusivo</span>
+                        <button class="reward-btn">Canjear</button>
+                        <span class="reward-cost">100 Créditos</span>
+                    </div>
+                </div>
+            </div>
+        </aside> -->
+    </div>
+
+</body>
+</html>
