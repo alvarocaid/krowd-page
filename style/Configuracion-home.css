@@ -1,0 +1,29 @@
+.config-main {
+    margin: 40px 0 0 20px;
+}
+
+.config-title {
+    font-size: 3.2rem;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 32px;
+}
+
+.config-link {
+    display: block;
+    color: #00bfff;
+    font-size: 1.1rem;
+    margin-bottom: 18px;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+    cursor: pointer;
+    width: fit-content;
+}
+
+.config-link:hover {
+    background: #33353a;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 6px;
+    padding: 0 4px;
+}
