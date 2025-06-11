@@ -1,198 +1,49 @@
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <title>Navbar + Sidebar Izquierdo + Sidebar Derecho</title>
-        <!-- Google Material Symbols -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
-        <link rel="stylesheet" href="/style/styles.css" />
-    </head>
-    <body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Navbar + Sidebar Izquierdo + Sidebar Derecho</title>
+    <!-- Google Material Symbols -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+    <link rel="stylesheet" href="/style/styles.css" />
+    <link rel="stylesheet" href="/style/login_popup.css">
+</head>
+<body>
 
-        <!-- Navbar superior -->
-        <header class="navbar">
-            <div class="logo">Krowd</div>
-            <div class="search">
-                <span class="search-icon material-symbols-outlined">search</span>
-                <input type="search" placeholder="Buscar" class="search-input">
+    <!-- Navbar superior -->
+    <header class="navbar">
+        <div class="logo">Krowd</div>
+        <div class="search">
+            <span class="search-icon material-symbols-outlined">search</span>
+            <input type="search" placeholder="Buscar" class="search-input">
+        </div>
+        <button class="login" onclick="openPopup()">Login/Sign Up</button>
+    </header>
+
+    <div class="layout">
+        <!-- Sidebar Izquierdo -->
+        <aside class="sidebar-left">
+            <div class="menu">
+                <div class="menu-item">
+                    Home
+                    <span class="material-symbols-outlined">home</span>
+                </div>
+                <div class="menu-item">
+                    Explorar Categorías
+                    <span class="material-symbols-outlined">explore</span>
+                </div>
             </div>
-            <button class="login">Login/Sign Up</button>
-        </header>
-
-        <div class="layout">
-            <!-- Sidebar Izquierdo -->
-            <aside class="sidebar-left">
-                <div class="menu">
-                    <div class="menu-item">
-                        Home
-                        <span class="material-symbols-outlined">home</span>
+            <div class="live-channels">
+                <h3>Canales en Vivo</h3>
+                <!-- Lista de canales en vivo -->
+                <div class="channel">
+                    <img src="/assets/streamer1.png" class="avatar" alt="LuriShow">
+                    <div class="info">
+                        <div class="name">LuriShow</div>
+                        <div class="category">IRL</div>
                     </div>
-                    <div class="menu-item">
-                        Explorar Categorías
-                        <span class="material-symbols-outlined">explore</span>
-                    </div>
+                    <div class="viewers"><span class="dot"></span>1K</div>
                 </div>
-                <div class="live-channels">
-                    <h3>Canales en Vivo</h3>
-                    <!-- Lista de canales en vivo -->
-                    <div class="channel">
-                        <img src="/assets/streamer1.png" class="avatar" alt="LuriShow">
-                        <div class="info">
-                            <div class="name">LuriShow</div>
-                            <div class="category">IRL</div>
-                        </div>
-                        <div class="viewers"><span class="dot"></span>1K</div>
-                    </div>
-                    <div class="channel">
-                        <img src="/assets/streamer2.png" class="avatar" alt="Canal 2">
-                        <div class="info">
-                            <div class="name">Shadowki</div>
-                            <div class="category">Just Chatting</div>
-                        </div>
-                        <div class="viewers"><span class="dot"></span>500</div>
-                    </div>
-                    <div class="channel">
-                        <img src="/assets/streamer3.png" class="avatar" alt="Canal 3">
-                        <div class="info">
-                            <div class="name">MakanAx</div>
-                            <div class="category">Música</div>
-                        </div>
-                        <div class="viewers"><span class="dot"></span>2K</div>
-                    </div>
-                    <div class="channel">
-                        <img src="/assets/streamer4.png" class="avatar" alt="Canal 4">
-                        <div class="info">
-                            <div class="name">PirulETv</div>
-                            <div class="category">Arte</div>
-                        </div>
-                        <div class="viewers"><span class="dot"></span>300</div>
-                    </div>
-                    <div class="channel">
-                        <img src="/assets/streamer5.png" class="avatar" alt="Canal 5">
-                        <div class="info">
-                            <div class="name">CamiloXX</div>
-                            <div class="category">Charlas</div>
-                        </div>
-                        <div class="viewers"><span class="dot"></span>800</div>
-                    </div>
-                </div>
-            </aside>
-
-            <!-- Contenido principal -->
-            <main class="content">
-                <!-- Sección Videojuegos -->
-                <div class="videojuegos">
-                    <h1>Videojuegos</h1>
-                    <div class="live-grid">
-                        <!-- Tarjetas de streams de videojuegos -->
-                        <div class="stream-card">
-                            <img src="/assets/genericstreamerimage.jpg" alt="Stream 1" class="stream-thumb" />
-                            <div class="stream-info">
-                                <div class="stream-title">LuriShow</div>
-                                <div class="stream-category">IRL</div>
-                                <div class="stream-viewers">1 viewers</div>
-                            </div>
-                        </div>
-                        <div class="stream-card">
-                            <img src="/assets/genericstreamerimage.jpg" alt="Stream 2" class="stream-thumb" />
-                            <div class="stream-info">
-                                <div class="stream-title">Shadowki</div>
-                                <div class="stream-category">Just Chatting</div>
-                                <div class="stream-viewers">2 viewers</div>
-                            </div>
-                        </div>
-                        <div class="stream-card">
-                            <img src="/assets/genericstreamerimage.jpg" alt="Stream 3" class="stream-thumb" />
-                            <div class="stream-info">
-                                <div class="stream-title">MakanAx</div>
-                                <div class="stream-category">Música</div>
-                                <div class="stream-viewers">3 viewers</div>
-                            </div>
-                        </div>
-                        <div class="stream-card">
-                            <img src="/assets/genericstreamerimage.jpg" alt="Stream 4" class="stream-thumb" />
-                            <div class="stream-info">
-                                <div class="stream-title">PirulETv</div>
-                                <div class="stream-category">Arte</div>
-                                <div class="stream-viewers">4 viewers</div>
-                            </div>
-                        </div>
-                        <div class="stream-card">
-                            <img src="/assets/genericstreamerimage.jpg" alt="Stream 5" class="stream-thumb" />
-                            <div class="stream-info">
-                                <div class="stream-title">CamiloXX</div>
-                                <div class="stream-category">Charlas</div>
-                                <div class="stream-viewers">5 viewers</div>
-                            </div>
-                        </div>
-                        <!-- Más tarjetas de ejemplo -->
-                        <div class="stream-card">
-                            <img src="/assets/genericstreamerimage.jpg" alt="Stream 1" class="stream-thumb" />
-                            <div class="stream-info">
-                                <div class="stream-title">LuriShow</div>
-                                <div class="stream-category">IRL</div>
-                                <div class="stream-viewers">6 viewers</div>
-                            </div>
-                        </div>
-                        <div class="stream-card">
-                            <img src="/assets/genericstreamerimage.jpg" alt="Stream 1" class="stream-thumb" />
-                            <div class="stream-info">
-                                <div class="stream-title">LuriShow</div>
-                                <div class="stream-category">IRL</div>
-                                <div class="stream-viewers">7 viewers</div>
-                            </div>
-                        </div>
-                        <div class="stream-card">
-                            <img src="/assets/genericstreamerimage.jpg" alt="Stream 1" class="stream-thumb" />
-                            <div class="stream-info">
-                                <div class="stream-title">LuriShow</div>
-                                <div class="stream-category">IRL</div>
-                                <div class="stream-viewers">10 viewers</div>
-                            </div>
-                        </div>
-                        <div class="stream-card">
-                            <img src="/assets/genericstreamerimage.jpg" alt="Stream 1" class="stream-thumb" />
-                            <div class="stream-info">
-                                <div class="stream-title">LuriShow</div>
-                                <div class="stream-category">IRL</div>
-                                <div class="stream-viewers">11 viewers</div>
-                            </div>
-                        </div>
-                        <div class="stream-card">
-                            <img src="/assets/genericstreamerimage.jpg" alt="Stream 1" class="stream-thumb" />
-                            <div class="stream-info">
-                                <div class="stream-title">LuriShow</div>
-                                <div class="stream-category">IRL</div>
-                                <div class="stream-viewers">12 viewers</div>
-                            </div>
-                        </div>
-                        <div class="stream-card">
-                            <img src="/assets/genericstreamerimage.jpg" alt="Stream 1" class="stream-thumb" />
-                            <div class="stream-info">
-                                <div class="stream-title">LuriShow</div>
-                                <div class="stream-category">IRL</div>
-                                <div class="stream-viewers">14 viewers</div>
-                            </div>
-                        </div>
-                        <div class="stream-card">
-                            <img src="/assets/genericstreamerimage.jpg" alt="Stream 1" class="stream-thumb" />
-                            <div class="stream-info">
-                                <div class="stream-title">LuriShow</div>
-                                <div class="stream-category">IRL</div>
-                                <div class="stream-viewers">14 viewers</div>
-                            </div>
-                        </div>
-                        <div class="stream-card">
-                            <img src="/assets/genericstreamerimage.jpg" alt="Stream 1" class="stream-thumb" />
-                            <div class="stream-info">
-                                <div class="stream-title">LuriShow</div>
-                                <div class="stream-category">IRL</div>
-                                <div class="stream-viewers">15 viewers</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-<<<<<<< HEAD
                 <div class="channel">
                     <img src="/assets/streamer2.png" class="avatar" alt="Canal 2">
                     <div class="info">
@@ -311,13 +162,8 @@
             <!-- Sección Videojuegos -->
             <div class="videojuegos">
                 <h1>Videojuegos</h1>
-=======
-                <!-- Sección Just Chatting -->
-                <div class="just-chatting">
-                    <h1>Just Chatting</h1>
->>>>>>> main
                 <div class="live-grid">
-                    <!-- Tarjetas de streams de Just Chatting -->
+                    <!-- Tarjetas de streams de videojuegos -->
                     <div class="stream-card">
                         <img src="/assets/genericstreamerimage.jpg" alt="Stream 1" class="stream-thumb" />
                         <div class="stream-info">
@@ -358,6 +204,7 @@
                             <div class="stream-viewers">5 viewers</div>
                         </div>
                     </div>
+                    <!-- Más tarjetas de ejemplo -->
                     <div class="stream-card">
                         <img src="/assets/genericstreamerimage.jpg" alt="Stream 1" class="stream-thumb" />
                         <div class="stream-info">
@@ -372,22 +219,6 @@
                             <div class="stream-title">LuriShow</div>
                             <div class="stream-category">IRL</div>
                             <div class="stream-viewers">7 viewers</div>
-                        </div>
-                    </div>
-                    <div class="stream-card">
-                        <img src="/assets/genericstreamerimage.jpg" alt="Stream 1" class="stream-thumb" />
-                        <div class="stream-info">
-                            <div class="stream-title">LuriShow</div>
-                            <div class="stream-category">IRL</div>
-                            <div class="stream-viewers">8 viewers</div>
-                        </div>
-                    </div>
-                    <div class="stream-card">
-                        <img src="/assets/genericstreamerimage.jpg" alt="Stream 1" class="stream-thumb" />
-                        <div class="stream-info">
-                            <div class="stream-title">LuriShow</div>
-                            <div class="stream-category">IRL</div>
-                            <div class="stream-viewers">9 viewers</div>
                         </div>
                     </div>
                     <div class="stream-card">
@@ -419,7 +250,7 @@
                         <div class="stream-info">
                             <div class="stream-title">LuriShow</div>
                             <div class="stream-category">IRL</div>
-                            <div class="stream-viewers">13 viewers</div>
+                            <div class="stream-viewers">14 viewers</div>
                         </div>
                     </div>
                     <div class="stream-card">
@@ -439,11 +270,137 @@
                         </div>
                     </div>
                 </div>
-
+            </div>
+            <!-- Sección Just Chatting -->
+            <div class="just-chatting">
+                <h1>Just Chatting</h1>
+            <div class="live-grid">
+                <!-- Tarjetas de streams de Just Chatting -->
+                <div class="stream-card">
+                    <img src="/assets/genericstreamerimage.jpg" alt="Stream 1" class="stream-thumb" />
+                    <div class="stream-info">
+                        <div class="stream-title">LuriShow</div>
+                        <div class="stream-category">IRL</div>
+                        <div class="stream-viewers">1 viewers</div>
+                    </div>
                 </div>
-            </main>
+                <div class="stream-card">
+                    <img src="/assets/genericstreamerimage.jpg" alt="Stream 2" class="stream-thumb" />
+                    <div class="stream-info">
+                        <div class="stream-title">Shadowki</div>
+                        <div class="stream-category">Just Chatting</div>
+                        <div class="stream-viewers">2 viewers</div>
+                    </div>
+                </div>
+                <div class="stream-card">
+                    <img src="/assets/genericstreamerimage.jpg" alt="Stream 3" class="stream-thumb" />
+                    <div class="stream-info">
+                        <div class="stream-title">MakanAx</div>
+                        <div class="stream-category">Música</div>
+                        <div class="stream-viewers">3 viewers</div>
+                    </div>
+                </div>
+                <div class="stream-card">
+                    <img src="/assets/genericstreamerimage.jpg" alt="Stream 4" class="stream-thumb" />
+                    <div class="stream-info">
+                        <div class="stream-title">PirulETv</div>
+                        <div class="stream-category">Arte</div>
+                        <div class="stream-viewers">4 viewers</div>
+                    </div>
+                </div>
+                <div class="stream-card">
+                    <img src="/assets/genericstreamerimage.jpg" alt="Stream 5" class="stream-thumb" />
+                    <div class="stream-info">
+                        <div class="stream-title">CamiloXX</div>
+                        <div class="stream-category">Charlas</div>
+                        <div class="stream-viewers">5 viewers</div>
+                    </div>
+                </div>
+                <div class="stream-card">
+                    <img src="/assets/genericstreamerimage.jpg" alt="Stream 1" class="stream-thumb" />
+                    <div class="stream-info">
+                        <div class="stream-title">LuriShow</div>
+                        <div class="stream-category">IRL</div>
+                        <div class="stream-viewers">6 viewers</div>
+                    </div>
+                </div>
+                <div class="stream-card">
+                    <img src="/assets/genericstreamerimage.jpg" alt="Stream 1" class="stream-thumb" />
+                    <div class="stream-info">
+                        <div class="stream-title">LuriShow</div>
+                        <div class="stream-category">IRL</div>
+                        <div class="stream-viewers">7 viewers</div>
+                    </div>
+                </div>
+                <div class="stream-card">
+                    <img src="/assets/genericstreamerimage.jpg" alt="Stream 1" class="stream-thumb" />
+                    <div class="stream-info">
+                        <div class="stream-title">LuriShow</div>
+                        <div class="stream-category">IRL</div>
+                        <div class="stream-viewers">8 viewers</div>
+                    </div>
+                </div>
+                <div class="stream-card">
+                    <img src="/assets/genericstreamerimage.jpg" alt="Stream 1" class="stream-thumb" />
+                    <div class="stream-info">
+                        <div class="stream-title">LuriShow</div>
+                        <div class="stream-category">IRL</div>
+                        <div class="stream-viewers">9 viewers</div>
+                    </div>
+                </div>
+                <div class="stream-card">
+                    <img src="/assets/genericstreamerimage.jpg" alt="Stream 1" class="stream-thumb" />
+                    <div class="stream-info">
+                        <div class="stream-title">LuriShow</div>
+                        <div class="stream-category">IRL</div>
+                        <div class="stream-viewers">10 viewers</div>
+                    </div>
+                </div>
+                <div class="stream-card">
+                    <img src="/assets/genericstreamerimage.jpg" alt="Stream 1" class="stream-thumb" />
+                    <div class="stream-info">
+                        <div class="stream-title">LuriShow</div>
+                        <div class="stream-category">IRL</div>
+                        <div class="stream-viewers">11 viewers</div>
+                    </div>
+                </div>
+                <div class="stream-card">
+                    <img src="/assets/genericstreamerimage.jpg" alt="Stream 1" class="stream-thumb" />
+                    <div class="stream-info">
+                        <div class="stream-title">LuriShow</div>
+                        <div class="stream-category">IRL</div>
+                        <div class="stream-viewers">12 viewers</div>
+                    </div>
+                </div>
+                <div class="stream-card">
+                    <img src="/assets/genericstreamerimage.jpg" alt="Stream 1" class="stream-thumb" />
+                    <div class="stream-info">
+                        <div class="stream-title">LuriShow</div>
+                        <div class="stream-category">IRL</div>
+                        <div class="stream-viewers">13 viewers</div>
+                    </div>
+                </div>
+                <div class="stream-card">
+                    <img src="/assets/genericstreamerimage.jpg" alt="Stream 1" class="stream-thumb" />
+                    <div class="stream-info">
+                        <div class="stream-title">LuriShow</div>
+                        <div class="stream-category">IRL</div>
+                        <div class="stream-viewers">14 viewers</div>
+                    </div>
+                </div>
+                <div class="stream-card">
+                    <img src="/assets/genericstreamerimage.jpg" alt="Stream 1" class="stream-thumb" />
+                    <div class="stream-info">
+                        <div class="stream-title">LuriShow</div>
+                        <div class="stream-category">IRL</div>
+                        <div class="stream-viewers">15 viewers</div>
+                    </div>
+                </div>
+            </div>
 
-<<<<<<< HEAD
+            </div>
+        </main>
+
         <!-- Sidebar Derecho -->
         <aside class="sidebar-right">
             <div class="trends">
@@ -507,28 +464,3 @@ function signup() {
 
 </body>
 </html>
-=======
-            <!-- Sidebar Derecho -->
-            <aside class="sidebar-right">
-                <div class="trends">
-                    Tendencias
-                    <span class="material-symbols-outlined">local_fire_department</span>
-                </div>
-                <div class="menu-item">
-                    <span>#</span>Just Chatting
-                </div>
-                <div class="menu-item">
-                    <span>#</span>IRL
-                </div>
-                <div class="menu-item">
-                    <span>#</span>GTA V
-                </div>
-                <div class="menu-item">
-                    <span>#</span>Valorant
-                </div>
-            </aside>
-        </div>
-
-    </body>
-    </html>
->>>>>>> main

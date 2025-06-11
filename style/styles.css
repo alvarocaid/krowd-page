@@ -34,15 +34,15 @@ body, html {
     color: #16c4fe;
 }
 
-.navbar .login {
-    background-color: #16c4fe;
-    border: none;
-    border-radius: 8px;
-    padding: 8px 16px;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+.navbar .user-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.navbar .user-info {
+    display: flex;
+    align-items: center;
+    gap: 20px;
 }
 
 .navbar .login:hover {

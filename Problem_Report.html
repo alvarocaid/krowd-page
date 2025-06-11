@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Home</title>
+    <!-- Google Material Symbols -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+    <link rel="stylesheet" href="/style/styles.css" />
+    <link rel="stylesheet" href="/style/Problem_Report.css" />
+</head>
+<body>
+
+    <!-- Navbar superior -->
+    <header class="navbar">
+        <div class="logo">Krowd</div>
+        <div class="search">
+            <span class="search-icon material-symbols-outlined">search</span>
+            <input type="search" placeholder="Buscar" class="search-input">
+        </div>
+        <div class="user-info">
+            <div class="user-item">
+                <span class="material-symbols-outlined">stars</span>
+                0 Créditos
+            </div>
+            <div class="user-item">
+                <span class="material-symbols-outlined">notifications</span>
+            </div>
+            <div class="user-item">
+                <span class="material-symbols-outlined">person</span>
+                xXCamiloXx
+            </div>
+        </div>
+
+    </header>
+
+    <div class="layout">
+        <!-- Sidebar Izquierdo -->
+        <aside class="sidebar-left">
+            <div class="menu">
+                <div class="menu-item">
+                    Home
+                    <span class="material-symbols-outlined">home</span>
+                </div>
+                <div class="menu-item">
+                    Explorar Categorías
+                    <span class="material-symbols-outlined">explore</span>
+                </div>
+                <div class="menu-item">
+                    Creadores Sugeridos
+                    <span class="material-symbols-outlined">emoji_people</span>
+                </div>
+                <div class="menu-item">
+                    Configurar
+                    <span class="material-symbols-outlined">settings</span>
+                </div>
+            </div>
+            <div class="live-channels">
+                <h3>Canales en Vivo</h3>
+                <!-- Lista de canales en vivo -->
+                <div class="channel">
+                    <img src="/assets/streamer1.png" class="avatar" alt="LuriShow">
+                    <div class="info">
+                        <div class="name">LuriShow</div>
+                        <div class="category">IRL</div>
+                    </div>
+                    <div class="viewers"><span class="dot"></span>1K</div>
+                </div>
+                <div class="channel">
+                    <img src="/assets/streamer2.png" class="avatar" alt="Canal 2">
+                    <div class="info">
+                        <div class="name">Shadowki</div>
+                        <div class="category">Just Chatting</div>
+                    </div>
+                    <div class="viewers"><span class="dot"></span>500</div>
+                </div>
+                <div class="channel">
+                    <img src="/assets/streamer3.png" class="avatar" alt="Canal 3">
+                    <div class="info">
+                        <div class="name">MakanAx</div>
+                        <div class="category">Música</div>
+                    </div>
+                    <div class="viewers"><span class="dot"></span>2K</div>
+                </div>
+                <div class="channel">
+                    <img src="/assets/streamer4.png" class="avatar" alt="Canal 4">
+                    <div class="info">
+                        <div class="name">PirulETv</div>
+                        <div class="category">Arte</div>
+                    </div>
+                    <div class="viewers"><span class="dot"></span>300</div>
+                </div>
+                <div class="channel">
+                    <img src="/assets/streamer5.png" class="avatar" alt="Canal 5">
+                    <div class="info">
+                        <div class="name">CamiloXX</div>
+                        <div class="category">Charlas</div>
+                    </div>
+                    <div class="viewers"><span class="dot"></span>800</div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Contenido principal -->
+        <main class="content">
+            <div class="config-container">
+                <a href="Configuracion-home.html" class="back-arrow" title="Volver a Configuración">
+                    <span class="material-symbols-outlined">arrow_back_ios</span>
+                </a>
+                <h1 class="config-title">Configuración</h1>
+                <div class="report-section">
+                    <h2 class="report-title">Reportar un <span>problema</span></h2>
+                    <div class="report-underline"></div>
+                    <p class="report-desc">
+                        Si tienes algun problema o error, porfavor dejanos un comentario y así podremos tener un feedback para seguir mejorando la plataforma
+                    </p>
+                    <div class="report-form">
+                        <form id="reportForm" style="display:flex; width:100%;">
+                            <input type="text" class="report-input" placeholder="Escriba aquí el problema" />
+                            <button class="report-send" type="submit">
+                                <span class="material-symbols-outlined">send</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Sidebar Derecho -->
+        <aside class="sidebar-right">
+            <div class="trends">
+                Tendencias
+                <span class="material-symbols-outlined">local_fire_department</span>
+            </div>
+            <div class="menu-item">
+                <span>#</span>Just Chatting
+            </div>
+            <div class="menu-item">
+                <span>#</span>IRL
+            </div>
+            <div class="menu-item">
+                <span>#</span>GTA V
+            </div>
+            <div class="menu-item">
+                <span>#</span>Valorant
+            </div>
+        </aside>
+    </div>
+</body>
+</html>
+
+<!-- Popup y backdrop al final del body -->
+<div id="popup-backdrop" class="popup-backdrop"></div>
+<div id="report-popup" class="report-popup">
+    <span class="popup-close" onclick="closePopup()">&times;</span>
+    <p id="popup-message">
+        <span class="popup-title">Usted hizo entrega de un reporte</span><br>
+        ¡Agradecemos su feedback!
+    </p>
+</div>
+
+<script>
+const form = document.getElementById('reportForm');
+const popup = document.getElementById('report-popup');
+const backdrop = document.getElementById('popup-backdrop');
+const input = form.querySelector('.report-input');
+const popupMessage = document.getElementById('popup-message');
+
+form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    if (input.value.trim() === '') {
+        showPopup(
+            `<span class="popup-title popup-error">Usted hizo entrega de un formulario vacio.</span><br>
+            <span class="popup-error">Porfavor, agregue una sencilla descripción si tuvo algun incoveniente</span>`
+        );
+    } else {
+        showPopup(
+            `<span class="popup-title">Usted hizo entrega de un reporte</span><br>
+            ¡Agradecemos su feedback!`
+        );
+        input.value = '';
+    }
+});
+
+function showPopup(message) {
+    popupMessage.innerHTML = message;
+    popup.style.display = 'flex';
+    backdrop.style.display = 'block';
+}
+
+function closePopup() {
+    popup.style.display = 'none';
+    backdrop.style.display = 'none';
+}
+</script>
