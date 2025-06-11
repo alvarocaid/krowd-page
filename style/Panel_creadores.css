@@ -11,18 +11,3 @@
     gap: 8px;
     padding: 8px 0;
 }
-.error-text {
-    color: #ff4d4d;
-    margin-left: 12px;
-    font-size: 1.05rem;
-    font-weight: 500;
-    transition: color 0.3s ease;
-}
-
-.success-text {
-    color: #00e676;
-    margin-left: 12px;
-    font-size: 1.05rem;
-    font-weight: 500;
-    transition: color 0.3s ease;
-}

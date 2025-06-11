@@ -6,7 +6,8 @@
     <!-- Google Material Symbols -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
     <link rel="stylesheet" href="/style/styles.css" />
-        <link rel="stylesheet" href="/style/Panel_creadores.css" />
+        <link rel="stylesheet" href="/style/Panel-Rewards-Ads.css" />
+        <link rel="stylesheet" href="/style/Panel_creadores.css" />      
 </head>
 <body>
 
@@ -36,54 +37,57 @@
                 <div class="menu-item">
                     <h3>Panel de Control del Creador</h3>
                 </div>
-                 <div class="menu-item">
+                <div class="menu-item">
+                    <img src="assets/icono1.png" alt="Home" class="icono">
                     <span class="material-symbols-outlined">home</span>
                     Home
                 </div>
-                 <div class="menu-item">
+                <div class="menu-item">
                     <img src="assets/gestor.png" alt="Gestor del stream" class="icono">
                     Gestor del stream
                 </div>
-                 <div class="menu-item">
+                <div class="menu-item">
                     <img src="assets/alertas.png" alt="Alertas" class="icono">
                     Alertas
                 </div>
-                 <div class="menu-item">
-                   <img src="assets/analisis.png" alt="Análisis" class="icono">
+                <div class="menu-item">
+                    <img src="assets/analisis.png" alt="Análisis" class="icono">
                     Analisis
-                    
                 </div>
-                 <div class="menu-item">
+                <div class="menu-item">
                     <img src="assets/comunidad.png" alt="Comunidad" class="icono">
                     <span>Comunidad</span>
                 </div>
-                 <div class="menu-item">
+                <div class="menu-item">
                     <img src="assets/contenido.png" alt="Contenido" class="icono">
                     Contenido
                 </div>
-                 <div class="menu-item">
+                <div class="menu-item">
                     <img src="assets/configuracion.png" alt="Configuración" class="icono">
                     Configuración
                 </div>
-                 <div class="menu-item">
+                <div class="menu-item">
                     <img src="assets/herramientas.png" alt="Herramientas de streaming" class="icono">
                     Herramientas de streaming
                 </div>
-                 <div class="menu-item">
+                <div class="menu-item">
                     <img src="assets/extensiones.png" alt="Extensiones" class="icono">
                     Extensiones
                 </div>
-                 <div class="menu-item">
+                <div class="menu-item">
                     <img src="assets/centro.png" alt="Centro de Seguridad" class="icono">
                     Centro de Seguridad
                 </div>
-                 <div class="menu-item">
+                <div class="menu-item">
+                    <img src="assets/icono2.png" alt="Configurar Transmisión" class="icono">
                     Configurar Transmisión
                 </div>
-                 <div class="menu-item">
+                <div class="menu-item">
+                    <img src="assets/icono3.png" alt="Panel de creador de contenido" class="icono">
                     Panel de creador de contenido
                 </div>
-                 <div class="menu-item">
+                <div class="menu-item">
+                    <img src="assets/icono1.png" alt="Rewarded Ads" class="icono">
                     Rewarded Ads (anuncios voluntarios)
                 </div>
             </div>
@@ -91,27 +95,33 @@
 
                     <!-- Contenido principal -->
         <main class="content">
-            <h2>Configurar el rewarded ads</h2>
-    <h3>Activar el rewarded ads</h3>
-    
-    <div class="main-content">
-        <div class="optional-text">
-            Opcional
-        </div>
-        
-        <div class="reward-toggle" style="display: flex; align-items: center; margin-top: 16px;">
-            <span style="color: #fff; margin-right: 16px;">Rewarded ads</span>
-            <label class="switch">
-                <input type="checkbox" id="rewardToggle">
-                <span class="slider"></span>
-            </label>
-            <span id="statusMessage" class="error-text">No recibiras ingresos</span>
-        </div>
-        
-        <p class="description-text">
-            Activar esta opcion generara que los espectadores elijan ver anuncios y generara ingresos reflejados en mi panel
-        </p>
+            <div class="main-content">
+    <h2 style="color: #fff; font-size: 1.25rem; font-weight: bold; margin-bottom: 10px;">
+        Configurar el&nbsp;rewarded ads
+    </h2>
+    <h3 style="color: #fff; font-size: 1.5rem; font-weight: bold; margin-bottom: 24px;">
+        Activar&nbsp; el rewarded ads
+    </h3>
+    <div style="color: #fff; font-size: 1.25rem; font-weight: bold; margin-bottom: 18px;">
+        Opcional
     </div>
+    <div style="display: flex; align-items: center; margin-left: 40px; margin-bottom: 32px;">
+        <span style="color: #fff; font-size: 1.35rem; font-weight: 600; margin-right: 18px;">Rewarded ads</span>
+        <label class="switch">
+            <input type="checkbox" id="rewardToggle" checked>
+            <span class="slider"></span>
+        </label>
+        <span id="statusMessage" class="green-text" style="font-size: 1.35rem; font-weight: bold; margin-left: 18px;">
+            Recibiras ingresos en el apartado de analisis
+        </span>
+    </div>
+    <div style="margin-top: 18px;">
+        <span style="color: #fff; font-size: 1.35rem; font-weight: bold;">
+            Activar esta opcion generara que los espectadores elijan ver anuncios y generara ingresos<br>
+            reflejados en mi panel
+        </span>
+    </div>
+</div>
         </main>
 
         <!-- Sidebar Derecho -->
@@ -126,10 +136,10 @@
 
         toggle.addEventListener('change', function() {
             if (this.checked) {
-                statusMessage.style.color = '#00e676'; // Verde cuando está activado
+                statusMessage.className = 'green-text';
                 statusMessage.textContent = 'Recibiras ingresos en el apartado de analisis';
             } else {
-                statusMessage.style.color = '#ff4d4d'; // Rojo cuando está desactivado
+                statusMessage.className = 'error-text';
                 statusMessage.textContent = 'No recibiras ingresos';
             }
         });
