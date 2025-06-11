@@ -1,16 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8" />
-    <title>Home</title>
+    <title>Compartir enlace referido</title>
     <!-- Google Material Symbols -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
     <link rel="stylesheet" href="/style/styles.css" />
-    <link rel="stylesheet" href="/style/Configuracion-home.css" />
+    <link rel="stylesheet" href="/style/Referred-Link.css" />
 </head>
 <body>
-
-    <!-- Navbar superior -->
+    <!-- Navbar superior y sidebars igual que en tus otras páginas -->
     <header class="navbar">
         <div class="logo">Krowd</div>
         <div class="search">
@@ -30,9 +29,7 @@
                 xXCamiloXx
             </div>
         </div>
-
     </header>
-
     <div class="layout">
         <!-- Sidebar Izquierdo -->
         <aside class="sidebar-left">
@@ -99,16 +96,33 @@
                 </div>
             </div>
         </aside>
-
         <!-- Contenido principal -->
         <main class="content">
             <div class="config-container">
+                <a href="Configuracion-home.html" class="back-arrow" title="Volver a Configuración">
+                    <span class="material-symbols-outlined">arrow_back_ios</span>
+                </a>
                 <h1 class="config-title">Configuración</h1>
-                <a href="Referred-Link.html" class="config-link">Compartir enlace de referido</a>
-                <a href="Problem_Report.html" class="config-link">Reportar un problema</a>
+                <div class="referred-section">
+                    <h2 class="referred-title">Compartir enlace referido</h2>
+                    <div class="referred-underline"></div>
+                    <p class="referred-desc">
+                        Por cada invitación de un usuario nuevo con ese código, se le otorga 20 puntos en la tienda de creadores
+                    </p>
+                    <div class="referred-label">Codigo referido</div>
+                    <div class="referred-code-box">
+                        <span class="referred-code">www.krowd.com/xXCamiloXx/invited</span>
+                        <span class="material-symbols-outlined referred-copy">content_copy</span>
+                    </div>
+                    <div class="referred-users-title">Usuarios que completan registro:</div>
+                    <div class="referred-users-list">
+                        <div>XxTentacionXx - Estado - Pendiente</div>
+                        <div>xXGilbertoXx - Estado - Registrado exitosamente +20 puntos pendientes</div>
+                        <div>LurigatoL2R2 - Estado - Pendiente</div>
+                    </div>
+                </div>
             </div>
         </main>
-
         <!-- Sidebar Derecho -->
         <aside class="sidebar-right">
             <div class="trends">
@@ -131,48 +145,3 @@
     </div>
 </body>
 </html>
-
-<!-- Popup y backdrop al final del body -->
-<div id="popup-backdrop" class="popup-backdrop"></div>
-<div id="report-popup" class="report-popup">
-    <span class="popup-close" onclick="closePopup()">&times;</span>
-    <p id="popup-message">
-        <span class="popup-title">Usted hizo entrega de un reporte</span><br>
-        ¡Agradecemos su feedback!
-    </p>
-</div>
-
-<script>
-const form = document.getElementById('reportForm');
-const popup = document.getElementById('report-popup');
-const backdrop = document.getElementById('popup-backdrop');
-const input = form.querySelector('.report-input');
-const popupMessage = document.getElementById('popup-message');
-
-form.addEventListener('submit', function(e) {
-    e.preventDefault();
-    if (input.value.trim() === '') {
-        showPopup(
-            `<span class="popup-title popup-error">Usted hizo entrega de un formulario vacio.</span><br>
-            <span class="popup-error">Porfavor, agregue una sencilla descripción si tuvo algun incoveniente</span>`
-        );
-    } else {
-        showPopup(
-            `<span class="popup-title">Usted hizo entrega de un reporte</span><br>
-            ¡Agradecemos su feedback!`
-        );
-        input.value = '';
-    }
-});
-
-function showPopup(message) {
-    popupMessage.innerHTML = message;
-    popup.style.display = 'flex';
-    backdrop.style.display = 'block';
-}
-
-function closePopup() {
-    popup.style.display = 'none';
-    backdrop.style.display = 'none';
-}
-</script>

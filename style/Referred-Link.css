@@ -1,0 +1,112 @@
+.config-container {
+    position: relative;
+    margin: 40px 0 0 40px;
+    color: #fff;
+    max-width: 600px;
+}
+
+.config-title {
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 32px; /* Más espacio debajo del título principal */
+    letter-spacing: 0.5px;
+}
+
+.back-arrow {
+    position: absolute;
+    bottom: 440px;  /* Cambiado para que esté más arriba */
+    right: 620px;     /* Puedes ajustar este valor si lo quieres más a la izquierda */
+    z-index: 10;
+    color: #33353a;
+    background: none;
+    border: none;
+    font-size: 2.5rem;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: color 0.2s;
+    text-decoration: none;
+}
+
+.back-arrow:hover {
+    color: #00bfff;
+}
+
+.referred-section {
+    margin-top: 36px; /* Más espacio arriba de la sección */
+}
+
+.referred-title {
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: #fff;
+    margin-bottom: 8px; /* Más espacio debajo del subtítulo */
+}
+
+.referred-underline {
+    width: 180px;
+    height: 2px;
+    background: #00bfff;
+    margin: 2px 0 24px 0; /* Más espacio debajo de la línea */
+    border-radius: 2px;
+}
+
+.referred-desc {
+    font-size: 1rem;
+    color: #e0e0e0;
+    margin-bottom: 28px; /* Más espacio debajo de la descripción */
+    font-weight: 400;
+    max-width: 500px;
+}
+
+.referred-label {
+    font-size: 1.1rem;
+    color: #fff;
+    margin-bottom: 12px; /* Más espacio debajo del label */
+    margin-top: 24px;    /* Más espacio arriba del label */
+}
+
+.referred-code-box {
+    display: flex;
+    align-items: center;
+    background: #181c24;
+    border-radius: 16px;
+    border: 1px solid #333;
+    padding: 10px 18px;
+    width: fit-content;
+    margin-bottom: 32px; /* Más espacio debajo del código */
+    gap: 10px;
+}
+
+.referred-code {
+    color: #fff;
+    font-size: 1rem;
+    margin-right: 8px;
+}
+
+.referred-copy {
+    color: #aaa;
+    font-size: 1.3rem;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+.referred-copy:hover {
+    color: #00bfff;
+}
+
+.referred-users-title {
+    font-size: 1.1rem;
+    color: #fff;
+    font-weight: bold;
+    margin-bottom: 14px; /* Más espacio debajo del título de usuarios */
+}
+
+.referred-users-list > div {
+    margin-bottom: 10px; /* Espacio entre usuarios */
+}
+
+.referred-users-list {
+    color: #fff;
+    font-size: 1rem;
+    margin-left: 8px;
+}
