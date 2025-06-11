@@ -1,73 +1,135 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <title>Panel del creador-Configurar el Rewarded Ads</title>
+    <title>Panel Creador</title>
+    <!-- Google Material Symbols -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
     <link rel="stylesheet" href="/style/styles.css" />
-    <link rel="stylesheet" href="/style/user-Panel-Creador-Rewards-Ads.css" />
+        <link rel="stylesheet" href="/style/Panel_creadores.css" />
 </head>
-<body style="background: #23272f; margin: 0;">
-    <div style="display: flex;">
+<body>
+
+    <!-- Navbar superior -->
+    <header class="navbar">
+        <div class="logo">Krowd</div>
+        <div class="search">
+            <span class="search-icon material-symbols-outlined">search</span>
+            <input type="search" placeholder="Buscar" class="search-input">
+        </div>
+        <div class="user-info">
+            <div class="user-item">
+                <span class="material-symbols-outlined">notifications</span>
+            </div>
+            <div class="user-item">
+                <span class="material-symbols-outlined">person</span>
+                xXCamiloXx
+            </div>
+        </div>
+
+    </header>
+
+    <div class="layout">
         <!-- Sidebar Izquierdo -->
-        <aside class="sidebar-left" style="background: #181c22; width: px; min-height: 100vh; color: #fff; padding: 0;">
-            <div class="menu" style="padding: 0 0 0 32px;">
-                <div style="font-size: 2rem; font-weight: bold; color: #16c4fe; margin-bottom: 15px;">krowd</div>
-                <div class="menu-item" style="font-weight: bold; margin-bottom: 24px;">PANEL DE CONTROL DEL CREADOR</div>
-                <div class="menu-item"><span class="material-symbols-outlined" style="vertical-align: middle;">home</span> Home</div>
-                <div class="menu-item"><span class="material-symbols-outlined" style="vertical-align: middle;">wifi</span> Gestor del stream</div>
-                <div class="menu-item"><span class="material-symbols-outlined" style="vertical-align: middle;">notifications</span> Alertas</div>
-                <div class="menu-item"><span class="material-symbols-outlined" style="vertical-align: middle;">analytics</span> Analisis</div>
-                <div class="menu-item"><span class="material-symbols-outlined" style="vertical-align: middle;">groups</span> Comunidad</div>
-                <div class="menu-item"><span class="material-symbols-outlined" style="vertical-align: middle;">video_library</span> Contenido</div>
-                <div class="menu-item"><span class="material-symbols-outlined" style="vertical-align: middle;">settings</span> Configuración</div>
-                <div class="menu-item"><span class="material-symbols-outlined" style="vertical-align: middle;">build</span> Herramientas de streaming</div>
-                <div class="menu-item"><span class="material-symbols-outlined" style="vertical-align: middle;">extension</span> Extensiones</div>
-                <div class="menu-item"><span class="material-symbols-outlined" style="vertical-align: middle;">security</span> Centro de Seguridad</div>
-                <div class="menu-item"><span class="material-symbols-outlined" style="vertical-align: middle;">settings_input_antenna</span> Configurar transmisión</div>
-                <div class="menu-item"><span class="material-symbols-outlined" style="vertical-align: middle;">dashboard</span> Panel de creador de contenido</div>
-                <div class="menu-item active" style="background: #23272f; border-radius: 8px; margin-top: 8px; padding: 8px 0 8px ;">
-                    <span class="material-symbols-outlined" style="vertical-align: middle;">monetization_on</span> Rewarded Ads
+        <aside class="sidebar-left">
+            <div class="menu">
+                <div class="menu-item">
+                    <h3>Panel de Control del Creador</h3>
+                </div>
+                 <div class="menu-item">
+                    <span class="material-symbols-outlined">home</span>
+                    Home
+                </div>
+                 <div class="menu-item">
+                    <img src="assets/gestor.png" alt="Gestor del stream" class="icono">
+                    Gestor del stream
+                </div>
+                 <div class="menu-item">
+                    <img src="assets/alertas.png" alt="Alertas" class="icono">
+                    Alertas
+                </div>
+                 <div class="menu-item">
+                   <img src="assets/analisis.png" alt="Análisis" class="icono">
+                    Analisis
+                    
+                </div>
+                 <div class="menu-item">
+                    <img src="assets/comunidad.png" alt="Comunidad" class="icono">
+                    <span>Comunidad</span>
+                </div>
+                 <div class="menu-item">
+                    <img src="assets/contenido.png" alt="Contenido" class="icono">
+                    Contenido
+                </div>
+                 <div class="menu-item">
+                    <img src="assets/configuracion.png" alt="Configuración" class="icono">
+                    Configuración
+                </div>
+                 <div class="menu-item">
+                    <img src="assets/herramientas.png" alt="Herramientas de streaming" class="icono">
+                    Herramientas de streaming
+                </div>
+                 <div class="menu-item">
+                    <img src="assets/extensiones.png" alt="Extensiones" class="icono">
+                    Extensiones
+                </div>
+                 <div class="menu-item">
+                    <img src="assets/centro.png" alt="Centro de Seguridad" class="icono">
+                    Centro de Seguridad
+                </div>
+                 <div class="menu-item">
+                    Configurar Transmisión
+                </div>
+                 <div class="menu-item">
+                    Panel de creador de contenido
+                </div>
+                 <div class="menu-item">
+                    Rewarded Ads (anuncios voluntarios)
                 </div>
             </div>
         </aside>
 
-        <!-- Contenido principal -->
-        <main class="content" style="flex: 1; background: #23272f; min-height: 100vh; padding: 0;">
-            <div style="display: flex; justify-content: flex-end; align-items: center; padding: 24px 32px 0 0;">
-                <span class="material-symbols-outlined" style="color: #fff; vertical-align: middle;">person</span>
-                <span style="color: #fff; margin-left: px;">xXCamiloXx</span>
-            </div>
-            <div style="max-width: 900px; margin: 24px 0 0 40px;">
-                <h2 style="color: #fff; font-size: 1.1rem; font-weight: 600; margin-bottom: 18px; margin-top: 0;">Configurar el rewarded ads</h2>
-                <div style="color: #fff; font-size: 1.05rem; font-weight: 600; margin-bottom: 18px;">Activar el rewarded ads</div>
-                <div style="display: flex; align-items: center; margin-bottom: 18px;">
-                    <span style="color: #fff; font-size: 1.05rem; font-weight: 600; margin-right: 40px;">Opcional</span>
-                </div>
-                <div style="display: flex; align-items: center; margin-bottom: 18px;">
-                    <span style="color: #fff; font-size: 1.05rem; font-weight: 600; margin-right: 16px;">Rewarded ads</span>
-                    <label class="switch">
-                        <input type="checkbox" id="rewardToggle">
-                        <span class="slider"></span>
-                    </label>
-                    <span id="statusMessage" class="error-text">No recibiras ingresos</span>
-                </div>
-                <div style="color: #fff; font-size: 1.05rem; font-weight: 600; margin-top: 18px;">
-                    Activar esta opcion generara que los espectadores elijan ver anuncios y generara ingresos reflejados en mi panel
-                </div>
-            </div>
-        </main>
+                    <!-- Contenido principal -->
+        <main class="content">
+            <h2>Configurar el rewarded ads</h2>
+    <h3>Activar el rewarded ads</h3>
+    
+    <div class="main-content">
+        <div class="optional-text">
+            Opcional
+        </div>
+        
+        <div class="reward-toggle" style="display: flex; align-items: center; margin-top: 16px;">
+            <span style="color: #fff; margin-right: 16px;">Rewarded ads</span>
+            <label class="switch">
+                <input type="checkbox" id="rewardToggle">
+                <span class="slider"></span>
+            </label>
+            <span id="statusMessage" class="error-text">No recibiras ingresos</span>
+        </div>
+        
+        <p class="description-text">
+            Activar esta opcion generara que los espectadores elijan ver anuncios y generara ingresos reflejados en mi panel
+        </p>
     </div>
+        </main>
+
+        <!-- Sidebar Derecho -->
+        <aside class="sidebar-right">
+           
+        </aside>
+    </div>
+
     <script>
         const toggle = document.getElementById('rewardToggle');
         const statusMessage = document.getElementById('statusMessage');
 
         toggle.addEventListener('change', function() {
             if (this.checked) {
-                statusMessage.className = 'green-text';
+                statusMessage.style.color = '#00e676'; // Verde cuando está activado
                 statusMessage.textContent = 'Recibiras ingresos en el apartado de analisis';
             } else {
-                statusMessage.className = 'error-text';
+                statusMessage.style.color = '#ff4d4d'; // Rojo cuando está desactivado
                 statusMessage.textContent = 'No recibiras ingresos';
             }
         });

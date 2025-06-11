@@ -13,7 +13,7 @@ body {
 }
 .sidebar-left {
     background: #181c22;
-    width: 100px;
+    width: 0;
     min-height: 100vh;
     color: #fff;
     padding: 0;
@@ -106,6 +106,8 @@ header {
     min-height: 100vh;
     padding: 0;
     position: relative;
+    padding: 40px;
+    color: white;
 }
 
 .user-top {
@@ -120,6 +122,7 @@ header {
 
 .main-content {
     max-width: 900px;
+    max-width: 800px;
 }
 
 h2 {
@@ -128,6 +131,13 @@ h2 {
     font-weight: 600;
     margin-bottom: 24px;
     margin-top: 0;
+    font-size: 24px;
+    margin-bottom: 8px;
+}
+
+h3 {
+    font-size: 20px;
+    margin-bottom: 24px;
 }
 
 .subtitle {
@@ -160,8 +170,8 @@ h2 {
 .switch {
     position: relative;
     display: inline-block;
-    width: 48px;
-    height: 24px;
+    width: 60px;
+    height: 30px;
 }
 .switch input {
     opacity: 0;
@@ -171,18 +181,21 @@ h2 {
 .slider {
     position: absolute;
     cursor: pointer;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background-color: #ccc;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #666;
     transition: .4s;
-    border-radius: 24px;
+    border-radius: 30px; /* Más redondeado */
 }
 .slider:before {
     position: absolute;
     content: "";
-    height: 18px;
-    width: 18px;
-    left: 3px;
-    bottom: 3px;
+    height: 26px;
+    width: 26px;
+    left: 2px;
+    bottom: 2px;
     background-color: white;
     transition: .4s;
     border-radius: 50%;
@@ -191,25 +204,57 @@ input:checked + .slider {
     background-color: #16c4fe;
 }
 input:checked + .slider:before {
+    transform: translateX(30px);
+}
+
+.toggle-container {
+    position: relative;
+    width: 50px;
+    height: 26px;
+}
+
+.toggle-input {
+    display: none;
+}
+
+.toggle-label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50px;
+    height: 26px;
+    background-color: #666;
+    border-radius: 13px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.toggle-label:before {
+    content: '';
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    top: 2px;
+    left: 2px;
+    background-color: white;
+    transition: 0.3s;
+}
+
+.toggle-input:checked + .toggle-label {
+    background-color: #16c4fe;
+}
+
+.toggle-input:checked + .toggle-label:before {
     transform: translateX(24px);
 }
 
-/* Modifica el estilo del switch para estado inactivo */
-.slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background-color: #ccc;
-    transition: .4s;
-    border-radius: 24px;
-}
-
-/* Añade el color rojo para el texto de error */
 .error-text {
     color: #ff4d4d;
     font-weight: 700;
     margin-left: 16px;
     font-size: 1.05rem;
+    font-size: 16px;
 }
 
 .green-text {
@@ -225,6 +270,48 @@ input:checked + .slider:before {
     font-weight: 600;
     margin-top: 24px;
     margin-bottom: 0;
+}
+
+#statusMessage {
+    font-weight: 700;
+    margin-left: 16px;
+    font-size: 1.05rem;
+    transition: color 0.3s ease;
+}
+
+.description-text {
+    color: #fff;
+    font-size: 16px;
+    margin-top: 16px;
+    line-height: 1.5;
+}
+
+.success-message {
+    color: #00e676;
+    font-size: 16px;
+}
+
+.error-message {
+    color: #ff4d4d;
+    font-size: 16px;
+}
+
+.optional-text {
+    color: #fff;
+    font-size: 16px;
+    margin-bottom: 16px;
+}
+
+.reward-control {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.reward-label {
+    color: #fff;
+    font-size: 16px;
 }
 
 @media (max-width: 900px) {
