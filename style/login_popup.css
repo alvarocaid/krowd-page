@@ -192,12 +192,12 @@
 }
 .error-close-btn {
     position: absolute;
-    bottom: 100px;
-    left: 360px;
+    bottom: 170px;
+    left: 350px;
     background: none;
     border: none;
     color: #fff;
-    font-size: 2rem;
+    font-size: 10px;
     cursor: pointer;
     border-radius: 50%;
     padding: 0.2em;
@@ -217,8 +217,14 @@
     margin-top: 1.5rem;
 }
 .error-cancel-icon .material-symbols-outlined {
-    color: #fff;
-    font-size: 3rem;
+    color: #ffffff;
+    font-size: 10rem;
     cursor: default;
     user-select: none;
+}
+
+.signup-box {
+    min-width: 520px;
+    width: 520px;
+    max-width: 98vw;
 }
