@@ -260,3 +260,9 @@ body, html {
 .just-chatting {
     margin-top: 40px;
 }
+
+.icono {
+  width: 24px; /* o el tamaño que prefieras */
+  height: 24px;
+  object-fit: contain;
+}
