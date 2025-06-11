@@ -1,0 +1,69 @@
+.content {
+    padding: 40px 40px 0 40px;
+    background: #10131a;
+    min-height: 100vh;
+}
+.suggested-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+.suggested-card {
+    display: flex;
+    align-items: center;
+    background: #23262b;
+    border-radius: 20px;
+    padding: 28px 36px;
+    gap: 32px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+.suggested-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: #181c23;
+}
+.suggested-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.suggested-name {
+    color: #fff;
+    font-size: 2rem;
+    font-weight: 600;
+}
+.suggested-desc {
+    color: #b3b3b3;
+    font-size: 1.15rem;
+}
+.suggested-tag {
+    background: #444851;
+    color: #fff;
+    border-radius: 8px;
+    padding: 4px 14px;
+    font-size: 1rem;
+    font-weight: 500;
+    display: inline-block;
+    margin-top: 6px;
+}
+.suggested-btn {
+    background: #01D2FC;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 16px 32px;
+    font-size: 1.15rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s;
+    margin-left: 24px;
+    cursor: pointer;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(1,210,252,0.08);
+}
+.suggested-btn:hover {
+    background: #1ab9d9;
+}
