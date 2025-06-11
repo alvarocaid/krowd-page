@@ -107,6 +107,17 @@
                 </form>
             </div>
         </div>
+        <div id="errorPopup" class="error-popup-overlay" style="display:none;">
+            <div class="error-popup-box">
+                <button class="error-close-btn" onclick="closeErrorPopup()" title="Cerrar">
+                    <span class="material-symbols-outlined" style="font-size:2rem;">close</span>
+                </button>
+                <div class="error-message">Correo o contraseña inválidos.</div>
+                <div class="error-cancel-icon">
+                    <span class="material-symbols-outlined" style="font-size:3rem;">cancel</span>
+                </div>
+            </div>
+        </div>
         <!-- Contenido principal -->
         <main class="content">
             <!-- Sección Videojuegos -->
@@ -373,24 +384,28 @@
     </div>
     <script>
         function openPopup() {
-        document.getElementById("loginPopup").style.display = "flex";
-        }
+    document.getElementById("loginPopup").style.display = "flex";
+}
+function closePopup() {
+    document.getElementById("loginPopup").style.display = "none";
+}
+function openErrorPopup() {
+    document.getElementById("errorPopup").style.display = "flex";
+}
+function closeErrorPopup() {
+    document.getElementById("errorPopup").style.display = "none";
+}
+function login() {
+    const usuario = document.getElementById("usuario").value;
+    const clave = document.getElementById("clave").value;
 
-        function closePopup() {
-        document.getElementById("loginPopup").style.display = "none";
-        }
-
-        function login() {
-        const usuario = document.getElementById("usuario").value;
-        const clave = document.getElementById("clave").value;
-
-        if (usuario === "admin" && clave === "1234") {
-            alert("Inicio de sesión exitoso");
-            closePopup();
-        } else {
-            alert("Usuario o contraseña incorrectos");
-        }
-        }
+    if (usuario === "admin" && clave === "1234") {
+        alert("Inicio de sesión exitoso");
+        closePopup();
+    } else {
+        openErrorPopup();
+    }
+}
     </script>
 
 </body>
