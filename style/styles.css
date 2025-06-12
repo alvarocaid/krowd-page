@@ -45,6 +45,16 @@ body, html {
     gap: 20px;
 }
 
+.navbar .login {
+    background-color: #16c4fe; /* o el color que prefieras */
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+}
 .navbar .login:hover {
     background-color: #1ab9d9;
 }
