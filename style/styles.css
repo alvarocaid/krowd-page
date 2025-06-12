@@ -59,6 +59,22 @@ body, html {
     background-color: #1ab9d9;
 }
 
+/* Botón de logout en la navbar */
+.logout-btn {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 2rem;
+    cursor: pointer;
+    margin-left: 12px;
+    transition: color 0.2s;
+    display: flex;
+    align-items: center;
+}
+.logout-btn:hover {
+    color: #16c4fe;
+}
+
 /* Barra de búsqueda */
 .search {
     width: max-content;
