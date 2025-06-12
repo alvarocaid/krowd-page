@@ -100,9 +100,9 @@
                         <span class="material-symbols-outlined">lock</span>
                     </div>
                     <button type="submit" class="login-btn">Log In</button>
-                    <div class="popup-footer">
-                        <a href="#" onclick="showSignupPopup();return false;">¿No tienes una cuenta? Crea una ahora.</a>
-                        <a href="#" onclick="alert('Función de registro próximamente');return false;">Regístrate como creador a nuestra plataforma</a>
+                   <div class="popup-footer">
+                        <a href="#" onclick="showSignupPopup('usuario');return false;">¿No tienes una cuenta? Crea una ahora.</a>
+                        <a href="#" onclick="showSignupPopup('creador');return false;">Regístrate como creador a nuestra plataforma</a>
                     </div>
                 </form>
             </div>
@@ -124,37 +124,56 @@
                 <div class="popup-header">
                     <h2 style="color:#01D2FC;">Sign Up</h2>
                 </div>
-                <form class="popup-form" onsubmit="event.preventDefault();signup();">
-                    <div class="input-label">
-                        <label for="signup-email">Email</label>
-                    </div>
+                <form class="popup-form" onsubmit="event.preventDefault(); signup();">
+                    <div class="input-label"><label for="signup-email">Email</label></div>
                     <div class="input-group">
-                        <input type="email" id="signup-email" autocomplete="email" required>
+                        <input id="signup-email" type="email" placeholder="Email">
                         <span class="material-symbols-outlined">mail</span>
                     </div>
-                    <div class="input-label">
-                        <label for="signup-username">Username</label>
-                    </div>
+                    <div class="input-label"><label for="signup-username">Username</label></div>
                     <div class="input-group">
-                        <input type="text" id="signup-username" autocomplete="username" required>
+                        <input id="signup-username" type="text" placeholder="Username">
                         <span class="material-symbols-outlined">person</span>
                     </div>
-                    <div class="input-label">
-                        <label for="signup-password">Contraseña</label>
-                    </div>
+                    <div class="input-label"><label for="signup-password">Contraseña</label></div>
                     <div class="input-group">
-                        <input type="password" id="signup-password" autocomplete="new-password" required>
-                        <span class="material-symbols-outlined">key</span>
+                        <input id="signup-password" type="password" placeholder="Contraseña">
+                        <span class="material-symbols-outlined">vpn_key</span>
                     </div>
-                    <div class="input-label">
-                        <label for="signup-password2">Confirmar contraseña</label>
-                    </div>
+                    <div class="input-label"><label for="signup-password2">Confirmar contraseña</label></div>
                     <div class="input-group">
-                        <input type="password" id="signup-password2" autocomplete="new-password" required>
-                        <span class="material-symbols-outlined">key</span>
+                        <input id="signup-password2" type="password" placeholder="Confirmar contraseña">
+                        <span class="material-symbols-outlined">vpn_key</span>
                     </div>
                     <button type="submit" class="login-btn">Sign Up</button>
                 </form>
+            </div>
+        </div>
+        <!-- Popup de bienvenida tras registro -->
+        <div id="welcomePopup" class="error-popup-overlay" style="display:none;">
+            <div class="error-popup-box">
+                <button class="welcome-close-btn" onclick="closeWelcomePopup()" title="Cerrar">
+                    <span class="material-symbols-outlined" style="font-size:2rem;">close</span>
+                </button>
+                <div class="error-message" id="welcomeMessage" style="color:#01D2FC;text-align:center;font-size:1.2rem;">
+                    <!-- Mensaje dinámico aquí -->
+                </div>
+                <div class="error-cancel-icon">
+                    <span class="material-symbols-outlined" style="font-size:3rem;">handshake</span>
+                </div>
+            </div>
+        </div>
+        <div id="signupErrorPopup" class="error-popup-overlay" style="display:none;">
+            <div class="error-popup-box">
+                <button class="signup-error-close-btn" onclick="closeSignupErrorPopup()" title="Cerrar">
+                    <span class="material-symbols-outlined" style="font-size:2rem;">close</span>
+                </button>
+                <div class="error-message" id="signupErrorMessage" style="color:#ff2d2d;text-align:center;font-size:1.2rem;">
+                    <!-- Mensaje dinámico aquí -->
+                </div>
+                <div class="error-cancel-icon">
+                    <span class="material-symbols-outlined" style="font-size:3rem;">cancel</span>
+                </div>
             </div>
         </div>
         <!-- Contenido principal -->
@@ -422,6 +441,7 @@
         </aside>
     </div>
     <script>
+        let signupType = "usuario";
         function openPopup() {
     document.getElementById("loginPopup").style.display = "flex";
 }
@@ -445,20 +465,44 @@ function login() {
     const clave = document.getElementById("clave").value;
 
     if (usuario === "admin" && clave === "1234") {
-        alert("Inicio de sesión exitoso");
-        closePopup();
+        window.location.href = "user-home.html"; // Redirige al home de usuario
     } else {
         openErrorPopup();
     }
 }
-function showSignupPopup() {
+function showSignupPopup(type = "usuario") {
+    signupType = type;
     closePopup();
     document.getElementById("signupPopup").style.display = "flex";
 }
+function closeWelcomePopup() {
+    document.getElementById("welcomePopup").style.display = "none";
+    if (signupType === "creador") {
+        window.location.href = "user-Panel-Creadores.html";
+    } else {
+        window.location.href = "user-home.html";
+    }
+}
+function closeSignupErrorPopup() {
+    document.getElementById("signupErrorPopup").style.display = "none";
+}
+
 function signup() {
-    // Aquí va la lógica de registro
-    alert("Registro exitoso (demo)");
-    closeSignupPopup();
+    const email = document.getElementById("signup-email").value.trim();
+    const username = document.getElementById("signup-username").value.trim();
+    const password = document.getElementById("signup-password").value;
+    const password2 = document.getElementById("signup-password2").value;
+
+    // Validación personalizada
+    if (!email || !username || !password || !password2 || password !== password2) {
+        document.getElementById("signupErrorMessage").innerHTML = "Verifica que todos los campos sean válidos.";
+        document.getElementById("signupErrorPopup").style.display = "flex";
+        return;
+    }
+
+    // Si todo está bien, muestra el popup de bienvenida
+    document.getElementById("welcomeMessage").innerHTML = `¡Bienvenido, <b>${username}</b>! Tu cuenta ha sido registrada.`;
+    document.getElementById("welcomePopup").style.display = "flex";
 }
     </script>
 

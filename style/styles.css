@@ -45,8 +45,34 @@ body, html {
     gap: 20px;
 }
 
+.navbar .login {
+    background-color: #16c4fe; /* o el color que prefieras */
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+}
 .navbar .login:hover {
     background-color: #1ab9d9;
+}
+
+/* Botón de logout en la navbar */
+.logout-btn {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 2rem;
+    cursor: pointer;
+    margin-left: 12px;
+    transition: color 0.2s;
+    display: flex;
+    align-items: center;
+}
+.logout-btn:hover {
+    color: #16c4fe;
 }
 
 /* Barra de búsqueda */
@@ -140,6 +166,11 @@ body, html {
     display: flex;
     align-items: center;
     gap: 8px;
+}
+
+.menu-item.active {
+    background-color: rgba(217, 217, 217, 0.2);
+    border-radius: 5px;
 }
 
 /* Sidebar derecho tendencias */

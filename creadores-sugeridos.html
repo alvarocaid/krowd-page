@@ -6,7 +6,7 @@
     <!-- Google Material Symbols -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
     <link rel="stylesheet" href="/style/styles.css" />
-    <link rel="stylesheet" href="/style/Configuracion-home.css" />
+    <link rel="stylesheet" href="/style/creadores-sugeridos.css" />
 </head>
 <body>
 
@@ -48,11 +48,11 @@
                     Explorar Categorías
                     <span class="material-symbols-outlined">explore</span>
                 </div>
-                <a href="creadores-sugeridos.html" class="menu-item" style="text-decoration:none; color:inherit;">
+                <a href="creadores-sugeridos.html" class="menu-item active" style="text-decoration:none; color:inherit;">
                     Creadores Sugeridos
                     <span class="material-symbols-outlined">emoji_people</span>
                 </a>
-                <a href="Configuracion-home.html" class="menu-item active" style="text-decoration:none; color:inherit;">
+                <a href="Configuracion-home.html" class="menu-item" style="text-decoration:none; color:inherit;">
                     Configurar
                     <span class="material-symbols-outlined">settings</span>
                 </a>
@@ -105,13 +105,46 @@
 
         <!-- Contenido principal -->
         <main class="content">
-            <div class="config-container">
-                <h1 class="config-title">Configuración</h1>
-                <a href="Referred-Link.html" class="config-link">Compartir enlace de referido</a>
-                <a href="Problem_Report.html" class="config-link">Reportar un problema</a>
+            <h1 style="color:#fff; font-size:2.5rem; font-weight: bold; margin-bottom: 2.2rem;">Creadores Sugeridos</h1>
+            <div class="suggested-list">
+                <div class="suggested-card">
+                    <img src="/assets/streamer6.png" class="suggested-avatar" alt="PiruleTV">
+                    <div class="suggested-info">
+                        <div class="suggested-name">PiruleTV</div>
+                        <div class="suggested-desc">Arte y música en vivo</div>
+                        <span class="suggested-tag"># Música</span>
+                    </div>
+                    <a href="#" class="suggested-btn">Ver Canal</a>
+                </div>
+                <div class="suggested-card">
+                    <img src="/assets/streamer7.png" class="suggested-avatar" alt="ProChonGuE">
+                    <div class="suggested-info">
+                        <div class="suggested-name">ProChonGuE</div>
+                        <div class="suggested-desc">PixelArt en vivo</div>
+                        <span class="suggested-tag"># PixelArt</span>
+                    </div>
+                    <a href="#" class="suggested-btn">Ver Canal</a>
+                </div>
+                <div class="suggested-card">
+                    <img src="/assets/streamer8.png" class="suggested-avatar" alt="MakaxX">
+                    <div class="suggested-info">
+                        <div class="suggested-name">MakaxX</div>
+                        <div class="suggested-desc">Videojuegos en vivo</div>
+                        <span class="suggested-tag"># Videojuegos</span>
+                    </div>
+                    <a href="#" class="suggested-btn">Ver Canal</a>
+                </div>
+                <div class="suggested-card">
+                    <img src="/assets/streamer9.png" class="suggested-avatar" alt="CoderLive">
+                    <div class="suggested-info">
+                        <div class="suggested-name">CoderLive</div>
+                        <div class="suggested-desc">Programación en vivo</div>
+                        <span class="suggested-tag"># Programación</span>
+                    </div>
+                    <a href="#" class="suggested-btn">Ver Canal</a>
+                </div>
             </div>
         </main>
-
         <!-- Sidebar Derecho -->
         <aside class="sidebar-right">
             <div class="trends">
@@ -132,50 +165,6 @@
             </div>
         </aside>
     </div>
+
 </body>
 </html>
-
-<!-- Popup y backdrop al final del body -->
-<div id="popup-backdrop" class="popup-backdrop"></div>
-<div id="report-popup" class="report-popup">
-    <span class="popup-close" onclick="closePopup()">&times;</span>
-    <p id="popup-message">
-        <span class="popup-title">Usted hizo entrega de un reporte</span><br>
-        ¡Agradecemos su feedback!
-    </p>
-</div>
-
-<script>
-const form = document.getElementById('reportForm');
-const popup = document.getElementById('report-popup');
-const backdrop = document.getElementById('popup-backdrop');
-const input = form.querySelector('.report-input');
-const popupMessage = document.getElementById('popup-message');
-
-form.addEventListener('submit', function(e) {
-    e.preventDefault();
-    if (input.value.trim() === '') {
-        showPopup(
-            `<span class="popup-title popup-error">Usted hizo entrega de un formulario vacio.</span><br>
-            <span class="popup-error">Porfavor, agregue una sencilla descripción si tuvo algun incoveniente</span>`
-        );
-    } else {
-        showPopup(
-            `<span class="popup-title">Usted hizo entrega de un reporte</span><br>
-            ¡Agradecemos su feedback!`
-        );
-        input.value = '';
-    }
-});
-
-function showPopup(message) {
-    popupMessage.innerHTML = message;
-    popup.style.display = 'flex';
-    backdrop.style.display = 'block';
-}
-
-function closePopup() {
-    popup.style.display = 'none';
-    backdrop.style.display = 'none';
-}
-</script>
