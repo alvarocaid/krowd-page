@@ -100,9 +100,9 @@
                         <span class="material-symbols-outlined">lock</span>
                     </div>
                     <button type="submit" class="login-btn">Log In</button>
-                    <div class="popup-footer">
-                        <a href="#" onclick="showSignupPopup();return false;">¿No tienes una cuenta? Crea una ahora.</a>
-                        <a href="#" onclick="showSignupPopup();return false;">Regístrate como creador a nuestra plataforma</a>
+                   <div class="popup-footer">
+                        <a href="#" onclick="showSignupPopup('usuario');return false;">¿No tienes una cuenta? Crea una ahora.</a>
+                        <a href="#" onclick="showSignupPopup('creador');return false;">Regístrate como creador a nuestra plataforma</a>
                     </div>
                 </form>
             </div>
@@ -441,6 +441,7 @@
         </aside>
     </div>
     <script>
+        let signupType = "usuario";
         function openPopup() {
     document.getElementById("loginPopup").style.display = "flex";
 }
@@ -469,13 +470,18 @@ function login() {
         openErrorPopup();
     }
 }
-function showSignupPopup() {
+function showSignupPopup(type = "usuario") {
+    signupType = type;
     closePopup();
     document.getElementById("signupPopup").style.display = "flex";
 }
 function closeWelcomePopup() {
     document.getElementById("welcomePopup").style.display = "none";
-    window.location.href = "user-home.html";
+    if (signupType === "creador") {
+        window.location.href = "user-Panel-Creadores.html";
+    } else {
+        window.location.href = "user-home.html";
+    }
 }
 function closeSignupErrorPopup() {
     document.getElementById("signupErrorPopup").style.display = "none";
