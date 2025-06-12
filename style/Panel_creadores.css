@@ -11,3 +11,17 @@
     gap: 8px;
     padding: 8px 0;
 }
+.iconoGrande {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    margin-right: 12px;
+    vertical-align: middle;
+}
+.perfil {
+    width: 210px;
+    height: 210px;
+    object-fit: contain;
+    margin-right: 12px;
+    vertical-align: middle;
+}
