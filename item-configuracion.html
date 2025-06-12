@@ -30,7 +30,7 @@
 
     </header>
 
-     <div class="layout">
+   <div class="layout">
         <!-- Sidebar Izquierdo (puedes copiar el mismo sidebar que ya tienes) -->
         <aside class="sidebar-left">
             <div class="menu">
@@ -98,36 +98,47 @@
             </div>
         </aside>
 
-                    <!-- Contenido principal -->
+                    
         <main class="content">
-            <div class="main-content">
-    <h2 style="color: #fff; font-size: 1.25rem; font-weight: bold; margin-bottom: 10px;">
-        Configurar el&nbsp;rewarded ads
-    </h2>
-    <h3 style="color: #fff; font-size: 1.5rem; font-weight: bold; margin-bottom: 24px;">
-        Activar&nbsp; el rewarded ads
-    </h3>
-    <div style="color: #fff; font-size: 1.25rem; font-weight: bold; margin-bottom: 18px;">
-        Opcional
+    <div class="main-content">
+        <h2 style="color: #fff; font-size: 2.2rem; font-weight: bold; margin-bottom: 10px;">
+            Método de pago
+        </h2>
+        <h3 style="color: #fff; font-size: 1.5rem; font-weight: bold; margin-bottom: 24px;">
+            Configura tu método de pago
+        </h3>
+        <form>
+            <label style="color: #fff; font-size: 1.1rem; font-weight: 500; margin-bottom: 6px; display: block;">
+                Nombre del titular
+            </label>
+            <input type="text" style="width: 100%; background: #181b20; border: 2px solid #35373c; border-radius: 8px; color: #fff; padding: 12px; margin-bottom: 18px; font-size: 1rem;" />
+
+            <label style="color: #fff; font-size: 1.1rem; font-weight: 500; margin-bottom: 6px; display: block;">
+                Numero de cuenta
+            </label>
+            <input type="text" style="width: 100%; background: #181b20; border: 2px solid #35373c; border-radius: 8px; color: #fff; padding: 12px; margin-bottom: 18px; font-size: 1rem;" />
+
+            <label style="color: #fff; font-size: 1.1rem; font-weight: 500; margin-bottom: 6px; display: block;">
+                Tipo de cuenta
+            </label>
+            <input type="text" style="width: 100%; background: #181b20; border: 2px solid #35373c; border-radius: 8px; color: #fff; padding: 12px; margin-bottom: 18px; font-size: 1rem;" />
+
+            <label style="color: #fff; font-size: 1.1rem; font-weight: 500; margin-bottom: 6px; display: block;">
+                Banco
+            </label>
+            <input type="text" style="width: 100%; background: #181b20; border: 2px solid #35373c; border-radius: 8px; color: #fff; padding: 12px; margin-bottom: 18px; font-size: 1rem;" />
+
+            <label style="color: #fff; font-size: 1.1rem; font-weight: 500; margin-bottom: 6px; display: block;">
+                Documento de identidad
+            </label>
+            <input type="text" style="width: 100%; background: #181b20; border: 2px solid #35373c; border-radius: 8px; color: #fff; padding: 12px; margin-bottom: 28px; font-size: 1rem;" />
+
+            <button type="submit" style="background: #00cfff; color: #fff; font-weight: bold; font-size: 1.1rem; border: none; border-radius: 12px; padding: 12px 28px; cursor: pointer;">
+                Guardar
+            </button>
+        </form>
     </div>
-    <div style="display: flex; align-items: center; margin-left: 40px; margin-bottom: 32px;">
-        <span style="color: #fff; font-size: 1.35rem; font-weight: 600; margin-right: 18px;">Rewarded ads</span>
-        <label class="switch">
-            <input type="checkbox" id="rewardToggle" checked>
-            <span class="slider"></span>
-        </label>
-        <span id="statusMessage" class="green-text" style="font-size: 1.35rem; font-weight: bold; margin-left: 18px;">
-            Recibiras ingresos en el apartado de analisis
-        </span>
-    </div>
-    <div style="margin-top: 18px;">
-        <span style="color: #fff; font-size: 1.35rem; font-weight: bold;">
-            Activar esta opcion generara que los espectadores elijan ver anuncios y generara ingresos<br>
-            reflejados en mi panel
-        </span>
-    </div>
-</div>
-        </main>
+</main>
 
         <!-- Sidebar Derecho -->
         <aside class="sidebar-right">
@@ -149,5 +160,37 @@
             }
         });
     </script>
+    <script>
+    // Selecciona el formulario y los inputs
+    const form = document.querySelector('.main-content form');
+    const inputs = form.querySelectorAll('input[type="text"]');
+    const button = form.querySelector('button[type="submit"]');
+
+    // Crea el mensaje si no existe
+    let msg = document.createElement('span');
+    msg.style.display = "none";
+    msg.style.marginLeft = "16px";
+    msg.style.verticalAlign = "middle";
+    form.appendChild(msg);
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault(); // Evita recargar la página
+        let allFilled = true;
+        inputs.forEach(input => {
+            if (input.value.trim().length < 1) {
+                allFilled = false;
+            }
+        });
+        if (allFilled) {
+            msg.textContent = "Método de pago registrado exitosamente. Ya puedes recibir tus ingresos.";
+            msg.style.color = "limegreen";
+            msg.style.display = "inline-block";
+        } else {
+            msg.textContent = "Verifica los datos ingresados";
+            msg.style.color = "crimson";
+            msg.style.display = "inline-block";
+        }
+    });
+</script>
 </body>
 </html>
