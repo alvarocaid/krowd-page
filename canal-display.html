@@ -44,10 +44,6 @@
                     Home
                     <span class="material-symbols-outlined">home</span>
                 </a>
-                <div class="menu-item">
-                    Explorar Categorías
-                    <span class="material-symbols-outlined">explore</span>
-                </div>
                 <a href="creadores-sugeridos.html" class="menu-item" style="text-decoration:none; color:inherit;">
                     Creadores Sugeridos
                     <span class="material-symbols-outlined">emoji_people</span>
@@ -136,7 +132,7 @@
                             <div class="support-desc">Mira un anuncio y gana +10 créditos</div>
                         </div>
                     </div>
-                    <button class="ad-btn">Ver anuncio</button>
+                    <button class="ad-btn" onclick="showAdPopup()">Ver anuncio</button>
                 </div>
             </div>
         </main>
@@ -198,6 +194,114 @@
             </div>
         </aside>
     </div>
+
+    <!-- Popup de Anuncio -->
+    <div id="adPopup" class="popup-overlay" style="display:none;z-index:1000;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.7);justify-content:center;align-items:center;">
+        <div class="popup-box" style="max-width:420px;background:#181c23;color:#fff;position:relative;box-shadow:0 8px 32px rgba(0,0,0,0.35);border-radius:18px;">
+            <button class="close-btn" id="closeAdBtn" onclick="closeAdPopup()" title="Cerrar" style="position:absolute;top:18px;right:18px;font-size:2rem;color:#fff;background:none;border:none;cursor:pointer;z-index:2;">&times;</button>
+            <div style="padding:32px 24px 18px 24px;display:flex;flex-direction:column;align-items:center;">
+                <div style="width:100%;display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;">
+                    <span style="font-size:1.3rem;font-weight:bold;">Anuncio</span>
+                    <span id="adTimer" style="font-size:1.1rem;font-weight:bold;">0:05</span>
+                </div>
+                <img src="/assets/advertisement.png" alt="Ad" style="width:180px;height:110px;object-fit:contain;background:#23272f;border-radius:12px;margin-bottom:18px;">
+                <div style="font-size:1.25rem;font-weight:600;margin-bottom:8px;text-align:center;">Gracias por apoyar al creador</div>
+                <div style="color:#b3b3b3;font-size:1rem;text-align:center;">Recibirás la recompensa al terminar este anuncio</div>
+            </div>
+        </div>
+    </div>
+    <!-- Fin Popup de Anuncio -->
+
+    <!-- Popup de Canje Exitoso -->
+    <div id="redeemPopup" class="popup-overlay" style="display:none;z-index:1100;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.7);justify-content:center;align-items:center;">
+        <div class="popup-box" style="max-width:380px;background:#181c23;color:#fff;position:relative;box-shadow:0 8px 32px rgba(0,0,0,0.35);border-radius:18px;">
+            <button class="close-btn" onclick="closeRedeemPopup()" title="Cerrar" style="position:absolute;top:18px;right:18px;font-size:2rem;color:#fff;background:none;border:none;cursor:pointer;z-index:2;">&times;</button>
+            <div style="padding:38px 24px 28px 24px;display:flex;flex-direction:column;align-items:center;">
+                <span class="material-symbols-outlined" style="font-size:64px;color:#01D2FC;margin-bottom:18px;">
+                    celebration
+                </span>
+                <div style="font-size:1.2rem;font-weight:600;color:#01D2FC;text-align:center;">¡Canje exitoso! Disfruta tu beneficio.</div>
+            </div>
+        </div>
+    </div>
+    <!-- Fin Popup de Canje Exitoso -->
+
+    <script>
+let adInterval;
+let credits = 0;
+
+// Busca el elemento de créditos en la navbar
+function updateCreditsDisplay() {
+    const creditsItem = Array.from(document.querySelectorAll('.user-info .user-item')).find(el => el.textContent.includes('Créditos'));
+    if (creditsItem) {
+        creditsItem.innerHTML = `<span class="material-symbols-outlined">stars</span> ${credits} Créditos`;
+    }
+}
+
+function showAdPopup() {
+    document.getElementById('adPopup').style.display = 'flex';
+    let seconds = 5;
+    document.getElementById('adTimer').textContent = `0:0${seconds}`;
+    document.getElementById('closeAdBtn').style.display = 'none';
+    adInterval = setInterval(() => {
+        seconds--;
+        document.getElementById('adTimer').textContent = `0:0${seconds}`;
+        if (seconds <= 0) {
+            clearInterval(adInterval);
+            document.getElementById('adTimer').textContent = '0:00';
+            document.getElementById('closeAdBtn').style.display = 'block';
+        }
+    }, 1000);
+}
+
+function closeAdPopup() {
+    document.getElementById('adPopup').style.display = 'none';
+    clearInterval(adInterval);
+    // Suma 10 créditos y actualiza el display
+    credits += 10;
+    updateCreditsDisplay();
+}
+
+// Mostrar popup de canje exitoso
+function showRedeemPopup() {
+    document.getElementById('redeemPopup').style.display = 'flex';
+    // Ya NO se cierra solo, solo con el botón de cerrar
+}
+
+function closeRedeemPopup() {
+    document.getElementById('redeemPopup').style.display = 'none';
+}
+
+// Asigna el evento a todos los botones "Canjear"
+document.querySelectorAll('.reward-btn').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        // Obtener el costo de la recompensa
+        const costSpan = this.parentElement.querySelector('.reward-cost');
+        if (costSpan) {
+            const match = costSpan.textContent.match(/(\d+)/);
+            const cost = match ? parseInt(match[1], 10) : 0;
+            if (credits >= cost) {
+                credits -= cost;
+                updateCreditsDisplay();
+                showRedeemPopup();
+            } else {
+                alert('No tienes créditos suficientes para canjear esta recompensa.');
+            }
+        }
+    });
+});
+
+// Inicializa los créditos al cargar la página
+window.onload = function() {
+    const creditsItem = Array.from(document.querySelectorAll('.user-info .user-item')).find(el => el.textContent.includes('Créditos'));
+    if (creditsItem) {
+        const match = creditsItem.textContent.match(/(\d+)\s*Créditos/);
+        credits = match ? parseInt(match[1], 10) : 0;
+        updateCreditsDisplay();
+    }
+};
+</script>
 
 </body>
 </html>
