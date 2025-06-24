@@ -119,6 +119,10 @@
                         <b>4. No política ni temas sensibles</b> – Este canal es para pasarla bien, no para discutir.<br><br>
                         5. Diviértete y participa con buena onda. 😎
                     </span>
+                    <div style="width: 90px; height: 38px; background: #16c4fe; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: bold; font-size: 1rem; margin: 24px auto 0 auto; cursor: pointer; box-shadow: 0 2px 8px #0003;"
+     onclick="editarTexto(this)">
+    Editar
+</div>
                 </div>
                 <div class="card" style="background: #23272f; border-radius: 18px; width: 340px; height: 220px; display: flex; flex-direction: column; justify-content: center; align-items: center; box-shadow: 0 4px 24px #000a; padding: 24px;">
                     <h2 style="color: #fff; margin-bottom: 10px;">Redes</h2>
@@ -128,6 +132,10 @@
                         Twitter: @xXCamiloXx<br>
                         YouTube: xXCamiloXx
                     </span>
+                    <div style="width: 90px; height: 38px; background: #16c4fe; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: bold; font-size: 1rem; margin: 24px auto 0 auto; cursor: pointer; box-shadow: 0 2px 8px #0003;"
+     onclick="editarTexto(this)">
+    Editar
+</div>
                 </div>
                 <div class="card" style="background: #23272f; border-radius: 18px; width: 340px; height: 220px; display: flex; flex-direction: column; justify-content: center; align-items: center; box-shadow: 0 4px 24px #000a; padding: 24px;">
                     <h2 style="color: #fff; margin-bottom: 10px;">AutoMod</h2>
@@ -135,6 +143,10 @@
                         AutoMod activado (Nivel 2) – Para mantener el chat limpio y seguro.<br><br>
                         ¡Gracias por ser parte de <br>esta comunidad!
                     </span>
+                    <div style="width: 90px; height: 38px; background: #16c4fe; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: bold; font-size: 1rem; margin: 24px auto 0 auto; cursor: pointer; box-shadow: 0 2px 8px #0003;"
+     onclick="editarTexto(this)">
+    Editar
+</div>
                 </div>
             </div>
         </main>
@@ -145,5 +157,19 @@
         </aside>
     </div>
 
+    <script>
+function editarTexto(btn) {
+    // Busca el span de texto dentro de la tarjeta
+    const card = btn.closest('.card');
+    const span = card.querySelector('span');
+    if (!span) return;
+    // Toma el texto actual y pide uno nuevo
+    const textoActual = span.innerText;
+    const nuevoTexto = prompt('Edita el contenido:', textoActual);
+    if (nuevoTexto !== null) {
+        span.innerText = nuevoTexto;
+    }
+}
+</script>
 </body>
 </html>
