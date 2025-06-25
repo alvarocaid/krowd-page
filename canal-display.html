@@ -243,6 +243,10 @@ function showAdPopup() {
     let seconds = 5;
     document.getElementById('adTimer').textContent = `0:0${seconds}`;
     document.getElementById('closeAdBtn').style.display = 'none';
+    // Mensaje inicial
+    const adMsg = document.querySelector('#adPopup .popup-box > div > div:nth-child(4)');
+    adMsg.textContent = 'Gracias por apoyar al creador';
+    adMsg.style.color = '#fff';
     adInterval = setInterval(() => {
         seconds--;
         document.getElementById('adTimer').textContent = `0:0${seconds}`;
@@ -250,6 +254,8 @@ function showAdPopup() {
             clearInterval(adInterval);
             document.getElementById('adTimer').textContent = '0:00';
             document.getElementById('closeAdBtn').style.display = 'block';
+            adMsg.textContent = '¡Ganaste +10 créditos!';
+            adMsg.style.color = '#01D2FC';
         }
     }, 1000);
 }
@@ -257,9 +263,12 @@ function showAdPopup() {
 function closeAdPopup() {
     document.getElementById('adPopup').style.display = 'none';
     clearInterval(adInterval);
-    // Suma 10 créditos y actualiza el display
-    credits += 10;
-    updateCreditsDisplay();
+    // Suma 10 créditos solo si el mensaje de ganaste créditos está visible
+    const adMsg = document.querySelector('#adPopup .popup-box > div > div:nth-child(4)');
+    if (adMsg.textContent.includes('Ganaste')) {
+        credits += 10;
+        updateCreditsDisplay();
+    }
 }
 
 // Mostrar popup de canje exitoso
