@@ -526,39 +526,14 @@ function signup() {
         return;
     }
 
-    // Si todo está bien, muestra el popup de bienvenida
-    document.getElementById("welcomeMessage").innerHTML = `¡Bienvenido, <b>${username}</b>! Tu cuenta ha sido registrada.`;
-    document.getElementById("welcomePopup").style.display = "flex";
-}
-
-// Funciones existentes del popup
-        function openPopup() {
-            document.getElementById('loginPopup').style.display = 'flex';
-        }
-        
-        function closePopup() {
-            document.getElementById('loginPopup').style.display = 'none';
-        }
-        
-        function closeErrorPopup() {
-            document.getElementById('errorPopup').style.display = 'none';
-        }
-        
-        function login() {
-            const usuario = document.getElementById('usuario').value;
-            const clave = document.getElementById('clave').value;
-            
-            // Simulación de validación (puedes cambiar esto por tu lógica real)
-            if (usuario === 'admin' && clave === '123') {
-                closePopup();
-                alert('¡Inicio de sesión exitoso!');
-            } else {
-                closePopup();
-                document.getElementById('errorPopup').style.display = 'flex';
-            }
-        }
-        
-        // Nuevas funciones para login con redes sociales
+    // Si todo está bien, redirigir directamente
+    closeSignupPopup();
+    if (signupType === "creador") {
+        window.location.href = "user-Panel-Creadores.html";
+    } else {
+        window.location.href = "user-home.html";
+    }
+}        // Nuevas funciones para login con redes sociales
         function loginWithGoogle() {
             // Cerrar el popup antes de redirigir
             closePopup();
@@ -582,6 +557,7 @@ function signup() {
         }
         
         function showSignupPopup(type) {
+            signupType = type;
             closePopup();
             document.getElementById('signupPopup').style.display = 'flex';
         }
@@ -590,23 +566,7 @@ function signup() {
             document.getElementById('signupPopup').style.display = 'none';
         }
         
-        function signup() {
-            const email = document.getElementById('signup-email').value;
-            const username = document.getElementById('signup-username').value;
-            const password = document.getElementById('signup-password').value;
-            const password2 = document.getElementById('signup-password2').value;
-            
-            if (password !== password2) {
-                document.getElementById('signupErrorMessage').textContent = 'Las contraseñas no coinciden.';
-                document.getElementById('signupErrorPopup').style.display = 'flex';
-                return;
-            }
-            
-            // Simulación de registro exitoso
-            closeSignupPopup();
-            document.getElementById('welcomeMessage').textContent = '¡Bienvenido a Krowd! Tu cuenta ha sido creada exitosamente.';
-            document.getElementById('welcomePopup').style.display = 'flex';
-        }
+
         
         function closeWelcomePopup() {
             document.getElementById('welcomePopup').style.display = 'none';
