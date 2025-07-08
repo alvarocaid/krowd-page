@@ -40,7 +40,7 @@
                     <span class="material-symbols-outlined">home</span>
                     Home
                 </div>
-                 <div class="menu-item">
+                 <div class="menu-item" id="gestor-stream-btn" style="cursor:pointer;">
                     <img src="assets/gestor.png" alt="Gestor del stream" class="icono">
                     Gestor del stream
                 </div>
@@ -109,9 +109,9 @@
             <hr style="border: none; border-top: 2px solid #333; width: 60%; margin: 32px auto 0 auto;">
             <!-- Tarjetas centradas -->
             <div class="cards-container" style="display: flex; justify-content: center; align-items: flex-start; gap: 32px; margin-top: 200px;">
-                <div class="card" style="background: #23272f; border-radius: 18px; width: 340px; min-height: 220px; display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-start; box-shadow: 0 4px 24px #000a; padding: 32px;">
+                <div class="card" style="background: #23272f; border-radius: 18px; width: 340px; min-height: 220px; display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-start; box-shadow: 0 4px 24px #000a; padding: 32px; vertical-align: top;">
                     <h2 style="color: #fff; margin-bottom: 10px; width: 100%;">Reglas del Canal</h2>
-                    <span style="color: #aaa; font-size: 15px; text-align: left; display: block;">
+                    <span style="color: #aaa; font-size: 15px; text-align: left; display: block; align-self: flex-start; margin-top: 0; margin-bottom: 0;">
                         ¡Bienvenido! Antes de participar en el chat, por favor sigue estas reglas:<br><br>
                         <b>1. Respeta a todos</b> – Nada de insultos, acoso ni comentarios ofensivos.<br><br>
                         <b>2. No spam</b> – Evita repetir mensajes, enlaces o hacer promoción sin permiso.<br><br>
@@ -124,9 +124,9 @@
     Editar
 </div>
                 </div>
-                <div class="card" style="background: #23272f; border-radius: 18px; width: 340px; height: 220px; display: flex; flex-direction: column; justify-content: center; align-items: center; box-shadow: 0 4px 24px #000a; padding: 24px;">
+                <div class="card" style="background: #23272f; border-radius: 18px; width: 340px; height: 340px; display: flex; flex-direction: column; justify-content:center; align-items: center; box-shadow: 0 4px 24px #000a; padding: 32px; vertical-align: top;">
                     <h2 style="color: #fff; margin-bottom: 10px;">Redes</h2>
-                    <span style="color: #aaa; font-size: 15px; text-align: left;">
+                    <span style="color: #aaa; font-size: 15px; text-align: left; display: block; align-self: flex-start; margin-top: 0; margin-bottom: 0;">
                         Sígueme en redes:<br>
                         Instagram: @xXCamiloXx<br>
                         Twitter: @xXCamiloXx<br>
@@ -137,7 +137,7 @@
     Editar
 </div>
                 </div>
-                <div class="card" style="background: #23272f; border-radius: 18px; width: 340px; height: 220px; display: flex; flex-direction: column; justify-content: center; align-items: center; box-shadow: 0 4px 24px #000a; padding: 24px;">
+                <div class="card" style="background: #23272f; border-radius: 18px; width: 340px; height: 340px; display: flex; flex-direction: column; justify-content: center; align-items: center; box-shadow: 0 4px 24px #000a; padding: 24px;">
                     <h2 style="color: #fff; margin-bottom: 10px;">AutoMod</h2>
                     <span style="color: #aaa; font-size: 15px; text-align: left;">
                         AutoMod activado (Nivel 2) – Para mantener el chat limpio y seguro.<br><br>
@@ -163,13 +163,79 @@ function editarTexto(btn) {
     const card = btn.closest('.card');
     const span = card.querySelector('span');
     if (!span) return;
-    // Toma el texto actual y pide uno nuevo
-    const textoActual = span.innerText;
-    const nuevoTexto = prompt('Edita el contenido:', textoActual);
-    if (nuevoTexto !== null) {
-        span.innerText = nuevoTexto;
-    }
+
+    // Si ya hay un textarea, no hacer nada
+    if (card.querySelector('textarea')) return;
+
+    // Crear textarea con el texto actual
+    const textarea = document.createElement('textarea');
+    textarea.value = span.innerText;
+    textarea.style.width = '100%';
+    textarea.style.height = '300px';
+    textarea.style.marginTop = '10px';
+    textarea.style.fontSize = '15px';
+    textarea.style.borderRadius = '8px';
+    textarea.style.padding = '8px';
+    textarea.style.boxSizing = 'border-box';
+
+    // Botón para guardar
+    const guardarBtn = document.createElement('button');
+    guardarBtn.textContent = 'Guardar';
+    guardarBtn.style.margin = '10px 8px 0 0';
+    guardarBtn.style.background = '#16c4fe';
+    guardarBtn.style.color = '#fff';
+    guardarBtn.style.border = 'none';
+    guardarBtn.style.borderRadius = '6px';
+    guardarBtn.style.padding = '8px 18px';
+    guardarBtn.style.fontWeight = 'bold';
+    guardarBtn.style.cursor = 'pointer';
+
+    // Botón para cancelar
+    const cancelarBtn = document.createElement('button');
+    cancelarBtn.textContent = 'Cancelar';
+    cancelarBtn.style.margin = '10px 0 0 0';
+    cancelarBtn.style.background = '#aaa';
+    cancelarBtn.style.color = '#23272f';
+    cancelarBtn.style.border = 'none';
+    cancelarBtn.style.borderRadius = '6px';
+    cancelarBtn.style.padding = '8px 18px';
+    cancelarBtn.style.fontWeight = 'bold';
+    cancelarBtn.style.cursor = 'pointer';
+
+    // Contenedor para los botones
+    const btnContainer = document.createElement('div');
+    btnContainer.style.display = 'flex';
+    btnContainer.style.justifyContent = 'flex-end';
+    btnContainer.appendChild(guardarBtn);
+    btnContainer.appendChild(cancelarBtn);
+
+    // Oculta el span y muestra el textarea y botones
+    span.style.display = 'none';
+    card.insertBefore(textarea, btn.nextSibling);
+    card.insertBefore(btnContainer, textarea.nextSibling);
+
+    guardarBtn.onclick = function() {
+        span.innerText = textarea.value;
+        span.style.display = '';
+        textarea.remove();
+        btnContainer.remove();
+    };
+    cancelarBtn.onclick = function() {
+        span.style.display = '';
+        textarea.remove();
+        btnContainer.remove();
+    };
 }
+
+// Ir al panel de Gestor del Stream al hacer click
+document.addEventListener('DOMContentLoaded', function() {
+    var gestorBtn = document.getElementById('gestor-stream-btn');
+    if (gestorBtn) {
+        gestorBtn.addEventListener('click', function() {
+            window.location.href = 'Gestor-del-Stream.html';
+        });
+    }
+});
 </script>
 </body>
 </html>
