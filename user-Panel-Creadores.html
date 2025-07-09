@@ -75,7 +75,7 @@
                 </div>
                  <div class="menu-item">
                     <img src="assets/centro.png" alt="Centro de Seguridad" class="icono">
-                    Centro de Seguridad
+                    <span id="centro-seguridad-btn" style="cursor:pointer;">Centro de Seguridad</span>
                 </div>
                  <div class="menu-item">
                     Configurar Transmisión
@@ -233,6 +233,12 @@ document.addEventListener('DOMContentLoaded', function() {
     if (gestorBtn) {
         gestorBtn.addEventListener('click', function() {
             window.location.href = 'Gestor-del-Stream.html';
+        });
+    }
+    var centroSeguridadBtn = document.getElementById('centro-seguridad-btn');
+    if (centroSeguridadBtn) {
+        centroSeguridadBtn.addEventListener('click', function() {
+            window.location.href = 'CentroSeguridad.html';
         });
     }
 });
