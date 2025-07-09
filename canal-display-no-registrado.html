@@ -170,8 +170,12 @@
         <main class="content">
             <div class="main-stream-area">
                 <div class="stream-video">
-                    <!-- Puedes reemplazar el img por un <video> si tienes el stream real -->
-                    <img src="/assets/canal-transmision.png" alt="Stream en vivo" style="width:100%;border-radius:12px;">
+                    <!-- Video de stream en vivo con fallback a imagen del streamer -->
+                    <video id="streamVideo" autoplay muted loop style="width:100%;border-radius:12px;" onError="fallbackToStreamerImage()">
+                        <source src="/assets/streamervideo.mp4" type="video/mp4">
+                        Su navegador no soporta el elemento video.
+                    </video>
+                    <img id="streamFallback" src="/assets/streamer1.png" alt="Stream en vivo" style="width:100%;border-radius:12px;display:none;">
                 </div>
                 <div class="stream-info-bar">
                     <div class="streamer-profile">
@@ -515,6 +519,39 @@ function showFollowNotification(message, icon) {
 window.onload = function() {
     loadFollowState();
 };
+
+// Video fallback script
+function fallbackToStreamerImage() {
+    console.log('Video failed to load, falling back to streamer image');
+    const video = document.getElementById('streamVideo');
+    const fallbackImg = document.getElementById('streamFallback');
+    
+    if (video && fallbackImg) {
+        video.style.display = 'none';
+        fallbackImg.style.display = 'block';
+    }
+}
+
+// También verificar si el video puede cargar al inicio
+document.addEventListener('DOMContentLoaded', function() {
+    const video = document.getElementById('streamVideo');
+    
+    if (video) {
+        // Listener para errores de carga del video
+        video.addEventListener('error', function() {
+            fallbackToStreamerImage();
+        });
+        
+        // Si el video no carga después de 3 segundos, usar fallback
+        setTimeout(function() {
+            if (video.networkState === HTMLMediaElement.NETWORK_NO_SOURCE || 
+                video.error || 
+                video.readyState === 0) {
+                fallbackToStreamerImage();
+            }
+        }, 3000);
+    }
+});
 </script>
 
 </body>
