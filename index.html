@@ -953,10 +953,27 @@ function signup() {
             });
         }
         
+        // Función para redirigir a la página de canal para usuarios no registrados
+        function redirectToChannel() {
+            window.location.href = 'canal-display-no-registrado.html';
+        }
+        
         // Inicializar filtro por defecto al cargar la página
         document.addEventListener('DOMContentLoaded', function() {
             // Activar el filtro "Todos" por defecto
             filterByCategory('all');
+            
+            // Agregar event listeners para las tarjetas de stream
+            const streamCards = document.querySelectorAll('.stream-card');
+            streamCards.forEach(card => {
+                card.addEventListener('click', redirectToChannel);
+            });
+            
+            // Agregar event listeners para los canales en vivo del sidebar
+            const sidebarChannels = document.querySelectorAll('.channel');
+            sidebarChannels.forEach(channel => {
+                channel.addEventListener('click', redirectToChannel);
+            });
         });
         
         // Cerrar popups al hacer clic fuera de ellos
