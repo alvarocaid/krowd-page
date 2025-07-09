@@ -6,6 +6,91 @@
     <!-- Google Material Symbols -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
     <link rel="stylesheet" href="/style/styles.css" />
+    <style>
+        /* Estilos para el sistema de filtrado */
+        .filter-item {
+            cursor: pointer;
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            margin-bottom: 4px;
+        }
+        
+        .filter-item:hover {
+            background-color: rgba(1, 210, 252, 0.1);
+            color: #01D2FC;
+        }
+        
+        .filter-item.active {
+            background-color: #01D2FC;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .filter-item.active span {
+            color: white;
+        }
+        
+        /* Transición suave para las tarjetas de stream */
+        .stream-card {
+            transition: all 0.3s ease;
+        }
+        
+        .stream-card[style*="display: none"] {
+            opacity: 0;
+            transform: scale(0.9);
+        }
+        
+        /* Estilos para el botón de limpiar búsqueda */
+        .clear-search-btn {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #666;
+            cursor: pointer;
+            padding: 4px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .clear-search-btn:hover {
+            background-color: rgba(1, 210, 252, 0.1);
+            color: #01D2FC;
+        }
+        
+        .clear-search-btn span {
+            font-size: 18px;
+        }
+        
+        /* Posición relativa para el contenedor de búsqueda */
+        .search {
+            position: relative;
+        }
+        
+        /* Estilos para las secciones de categoría */
+        .category-section {
+            margin-bottom: 40px;
+        }
+        
+        .category-section h1 {
+            color: #01D2FC;
+            font-size: 24px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        
+        .category-section .live-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+    </style>
 </head>
 <body>
 
@@ -14,7 +99,10 @@
         <div class="logo">Krowd</div>
         <div class="search">
             <span class="search-icon material-symbols-outlined">search</span>
-            <input type="search" placeholder="Buscar" class="search-input">
+            <input type="search" placeholder="Buscar streamers..." class="search-input" id="searchInput" oninput="searchStreams()" onkeypress="handleSearchKeyPress(event)">
+            <button class="clear-search-btn" id="clearSearchBtn" onclick="clearSearch()" style="display: none;" title="Limpiar búsqueda">
+                <span class="material-symbols-outlined">close</span>
+            </button>
         </div>
         <div class="user-info">
             <div class="user-item">
@@ -101,274 +189,535 @@
         <!-- Contenido principal -->
         <main class="content">
             <!-- Sección Videojuegos -->
-            <div class="videojuegos">
+            <div class="category-section" id="videojuegos-section">
                 <h1>Videojuegos</h1>
                 <div class="live-grid">
-                    <!-- Tarjetas de streams de videojuegos -->
-                    <div class="stream-card">
-                        <img src="/assets/genericstreamerimage.jpg" alt="Stream 1" class="stream-thumb" />
+                    <div class="stream-card" data-category="Videojuegos">
+                        <img src="/assets/genericstreamerimage.jpg" alt="GTA V Stream" class="stream-thumb" />
                         <div class="stream-info">
-                            <div class="stream-title">LuriShow</div>
-                            <div class="stream-category">IRL</div>
-                            <div class="stream-viewers">1 viewers</div>
+                            <div class="stream-title">GamerPro</div>
+                            <div class="stream-category">Videojuegos</div>
+                            <div class="stream-viewers">1.2K viewers</div>
                         </div>
                     </div>
-                    <div class="stream-card">
-                        <img src="/assets/genericstreamerimage.jpg" alt="Stream 2" class="stream-thumb" />
+                    <div class="stream-card" data-category="Videojuegos">
+                        <img src="/assets/genericstreamerimage.jpg" alt="Valorant Stream" class="stream-thumb" />
+                        <div class="stream-info">
+                            <div class="stream-title">ValorantKing</div>
+                            <div class="stream-category">Videojuegos</div>
+                            <div class="stream-viewers">850 viewers</div>
+                        </div>
+                    </div>
+                    <div class="stream-card" data-category="Videojuegos">
+                        <img src="/assets/genericstreamerimage.jpg" alt="League of Legends Stream" class="stream-thumb" />
+                        <div class="stream-info">
+                            <div class="stream-title">LoLMaster</div>
+                            <div class="stream-category">Videojuegos</div>
+                            <div class="stream-viewers">920 viewers</div>
+                        </div>
+                    </div>
+                    <div class="stream-card" data-category="Videojuegos">
+                        <img src="/assets/genericstreamerimage.jpg" alt="Minecraft Stream" class="stream-thumb" />
+                        <div class="stream-info">
+                            <div class="stream-title">MinecraftBuilder</div>
+                            <div class="stream-category">Videojuegos</div>
+                            <div class="stream-viewers">650 viewers</div>
+                        </div>
+                    </div>
+                    <div class="stream-card" data-category="Videojuegos">
+                        <img src="/assets/genericstreamerimage.jpg" alt="Gaming Stream" class="stream-thumb" />
+                        <div class="stream-info">
+                            <div class="stream-title">GameStreamer</div>
+                            <div class="stream-category">Videojuegos</div>
+                            <div class="stream-viewers">420 viewers</div>
+                        </div>
+                    </div>
+                    <div class="stream-card" data-category="Videojuegos">
+                        <img src="/assets/genericstreamerimage.jpg" alt="Gaming Stream" class="stream-thumb" />
+                        <div class="stream-info">
+                            <div class="stream-title">RetroGamer</div>
+                            <div class="stream-category">Videojuegos</div>
+                            <div class="stream-viewers">380 viewers</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección Just Chatting -->
+            <div class="category-section" id="justchatting-section">
+                <h1>Just Chatting</h1>
+                <div class="live-grid">
+                    <div class="stream-card" data-category="Just Chatting">
+                        <img src="/assets/genericstreamerimage.jpg" alt="Chat Stream" class="stream-thumb" />
                         <div class="stream-info">
                             <div class="stream-title">Shadowki</div>
                             <div class="stream-category">Just Chatting</div>
-                            <div class="stream-viewers">2 viewers</div>
+                            <div class="stream-viewers">500 viewers</div>
                         </div>
                     </div>
-                    <div class="stream-card">
-                        <img src="/assets/genericstreamerimage.jpg" alt="Stream 3" class="stream-thumb" />
+                    <div class="stream-card" data-category="Just Chatting">
+                        <img src="/assets/genericstreamerimage.jpg" alt="Chat Stream" class="stream-thumb" />
+                        <div class="stream-info">
+                            <div class="stream-title">StreamerJS</div>
+                            <div class="stream-category">Just Chatting</div>
+                            <div class="stream-viewers">720 viewers</div>
+                        </div>
+                    </div>
+                    <div class="stream-card" data-category="Just Chatting">
+                        <img src="/assets/genericstreamerimage.jpg" alt="Chat Stream" class="stream-thumb" />
+                        <div class="stream-info">
+                            <div class="stream-title">ChatMaster</div>
+                            <div class="stream-category">Just Chatting</div>
+                            <div class="stream-viewers">340 viewers</div>
+                        </div>
+                    </div>
+                    <div class="stream-card" data-category="Just Chatting">
+                        <img src="/assets/genericstreamerimage.jpg" alt="Chat Stream" class="stream-thumb" />
+                        <div class="stream-info">
+                            <div class="stream-title">TalkMaster</div>
+                            <div class="stream-category">Just Chatting</div>
+                            <div class="stream-viewers">280 viewers</div>
+                        </div>
+                    </div>
+                    <div class="stream-card" data-category="Just Chatting">
+                        <img src="/assets/genericstreamerimage.jpg" alt="Chat Stream" class="stream-thumb" />
+                        <div class="stream-info">
+                            <div class="stream-title">ConversationKing</div>
+                            <div class="stream-category">Just Chatting</div>
+                            <div class="stream-viewers">190 viewers</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección IRL -->
+            <div class="category-section" id="irl-section">
+                <h1>IRL</h1>
+                <div class="live-grid">
+                    <div class="stream-card" data-category="IRL">
+                        <img src="/assets/genericstreamerimage.jpg" alt="IRL Stream" class="stream-thumb" />
+                        <div class="stream-info">
+                            <div class="stream-title">LuriShow</div>
+                            <div class="stream-category">IRL</div>
+                            <div class="stream-viewers">1K viewers</div>
+                        </div>
+                    </div>
+                    <div class="stream-card" data-category="IRL">
+                        <img src="/assets/genericstreamerimage.jpg" alt="IRL Stream" class="stream-thumb" />
+                        <div class="stream-info">
+                            <div class="stream-title">VloggerPro</div>
+                            <div class="stream-category">IRL</div>
+                            <div class="stream-viewers">620 viewers</div>
+                        </div>
+                    </div>
+                    <div class="stream-card" data-category="IRL">
+                        <img src="/assets/genericstreamerimage.jpg" alt="IRL Stream" class="stream-thumb" />
+                        <div class="stream-info">
+                            <div class="stream-title">RealLifeTV</div>
+                            <div class="stream-category">IRL</div>
+                            <div class="stream-viewers">410 viewers</div>
+                        </div>
+                    </div>
+                    <div class="stream-card" data-category="IRL">
+                        <img src="/assets/genericstreamerimage.jpg" alt="IRL Stream" class="stream-thumb" />
+                        <div class="stream-info">
+                            <div class="stream-title">LifeStream</div>
+                            <div class="stream-category">IRL</div>
+                            <div class="stream-viewers">350 viewers</div>
+                        </div>
+                    </div>
+                    <div class="stream-card" data-category="IRL">
+                        <img src="/assets/genericstreamerimage.jpg" alt="IRL Stream" class="stream-thumb" />
+                        <div class="stream-info">
+                            <div class="stream-title">OutdoorLife</div>
+                            <div class="stream-category">IRL</div>
+                            <div class="stream-viewers">290 viewers</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección Música -->
+            <div class="category-section" id="musica-section">
+                <h1>Música</h1>
+                <div class="live-grid">
+                    <div class="stream-card" data-category="Música">
+                        <img src="/assets/genericstreamerimage.jpg" alt="Music Stream" class="stream-thumb" />
                         <div class="stream-info">
                             <div class="stream-title">MakanAx</div>
                             <div class="stream-category">Música</div>
-                            <div class="stream-viewers">3 viewers</div>
+                            <div class="stream-viewers">2K viewers</div>
                         </div>
                     </div>
-                    <div class="stream-card">
-                        <img src="/assets/genericstreamerimage.jpg" alt="Stream 4" class="stream-thumb" />
+                    <div class="stream-card" data-category="Música">
+                        <img src="/assets/genericstreamerimage.jpg" alt="Music Stream" class="stream-thumb" />
+                        <div class="stream-info">
+                            <div class="stream-title">MusicoLive</div>
+                            <div class="stream-category">Música</div>
+                            <div class="stream-viewers">800 viewers</div>
+                        </div>
+                    </div>
+                    <div class="stream-card" data-category="Música">
+                        <img src="/assets/genericstreamerimage.jpg" alt="Music Stream" class="stream-thumb" />
+                        <div class="stream-info">
+                            <div class="stream-title">DJLive</div>
+                            <div class="stream-category">Música</div>
+                            <div class="stream-viewers">560 viewers</div>
+                        </div>
+                    </div>
+                    <div class="stream-card" data-category="Música">
+                        <img src="/assets/genericstreamerimage.jpg" alt="Music Stream" class="stream-thumb" />
+                        <div class="stream-info">
+                            <div class="stream-title">BeatMaker</div>
+                            <div class="stream-category">Música</div>
+                            <div class="stream-viewers">450 viewers</div>
+                        </div>
+                    </div>
+                    <div class="stream-card" data-category="Música">
+                        <img src="/assets/genericstreamerimage.jpg" alt="Music Stream" class="stream-thumb" />
+                        <div class="stream-info">
+                            <div class="stream-title">SongWriter</div>
+                            <div class="stream-category">Música</div>
+                            <div class="stream-viewers">320 viewers</div>
+                        </div>
+                    </div>
+                    <div class="stream-card" data-category="Música">
+                        <img src="/assets/genericstreamerimage.jpg" alt="Music Stream" class="stream-thumb" />
+                        <div class="stream-info">
+                            <div class="stream-title">PianoMaster</div>
+                            <div class="stream-category">Música</div>
+                            <div class="stream-viewers">270 viewers</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección Arte -->
+            <div class="category-section" id="arte-section">
+                <h1>Arte</h1>
+                <div class="live-grid">
+                    <div class="stream-card" data-category="Arte">
+                        <img src="/assets/genericstreamerimage.jpg" alt="Art Stream" class="stream-thumb" />
                         <div class="stream-info">
                             <div class="stream-title">PirulETv</div>
                             <div class="stream-category">Arte</div>
-                            <div class="stream-viewers">4 viewers</div>
+                            <div class="stream-viewers">300 viewers</div>
                         </div>
                     </div>
-                    <div class="stream-card">
-                        <img src="/assets/genericstreamerimage.jpg" alt="Stream 5" class="stream-thumb" />
+                    <div class="stream-card" data-category="Arte">
+                        <img src="/assets/genericstreamerimage.jpg" alt="Art Stream" class="stream-thumb" />
+                        <div class="stream-info">
+                            <div class="stream-title">ArtistaTV</div>
+                            <div class="stream-category">Arte</div>
+                            <div class="stream-viewers">420 viewers</div>
+                        </div>
+                    </div>
+                    <div class="stream-card" data-category="Arte">
+                        <img src="/assets/genericstreamerimage.jpg" alt="Art Stream" class="stream-thumb" />
+                        <div class="stream-info">
+                            <div class="stream-title">DrawingTime</div>
+                            <div class="stream-category">Arte</div>
+                            <div class="stream-viewers">180 viewers</div>
+                        </div>
+                    </div>
+                    <div class="stream-card" data-category="Arte">
+                        <img src="/assets/genericstreamerimage.jpg" alt="Art Stream" class="stream-thumb" />
+                        <div class="stream-info">
+                            <div class="stream-title">DigitalArt</div>
+                            <div class="stream-category">Arte</div>
+                            <div class="stream-viewers">150 viewers</div>
+                        </div>
+                    </div>
+                    <div class="stream-card" data-category="Arte">
+                        <img src="/assets/genericstreamerimage.jpg" alt="Art Stream" class="stream-thumb" />
+                        <div class="stream-info">
+                            <div class="stream-title">PaintingLive</div>
+                            <div class="stream-category">Arte</div>
+                            <div class="stream-viewers">120 viewers</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección Charlas -->
+            <div class="category-section" id="charlas-section">
+                <h1>Charlas</h1>
+                <div class="live-grid">
+                    <div class="stream-card" data-category="Charlas">
+                        <img src="/assets/genericstreamerimage.jpg" alt="Talk Stream" class="stream-thumb" />
                         <div class="stream-info">
                             <div class="stream-title">CamiloXX</div>
                             <div class="stream-category">Charlas</div>
-                            <div class="stream-viewers">5 viewers</div>
+                            <div class="stream-viewers">800 viewers</div>
                         </div>
                     </div>
-                    <!-- Más tarjetas de ejemplo -->
-                    <div class="stream-card">
-                        <img src="/assets/genericstreamerimage.jpg" alt="Stream 1" class="stream-thumb" />
+                    <div class="stream-card" data-category="Charlas">
+                        <img src="/assets/genericstreamerimage.jpg" alt="Talk Stream" class="stream-thumb" />
                         <div class="stream-info">
-                            <div class="stream-title">LuriShow</div>
-                            <div class="stream-category">IRL</div>
-                            <div class="stream-viewers">6 viewers</div>
+                            <div class="stream-title">CharlaShow</div>
+                            <div class="stream-category">Charlas</div>
+                            <div class="stream-viewers">520 viewers</div>
                         </div>
                     </div>
-                    <div class="stream-card">
-                        <img src="/assets/genericstreamerimage.jpg" alt="Stream 1" class="stream-thumb" />
+                    <div class="stream-card" data-category="Charlas">
+                        <img src="/assets/genericstreamerimage.jpg" alt="Talk Stream" class="stream-thumb" />
                         <div class="stream-info">
-                            <div class="stream-title">LuriShow</div>
-                            <div class="stream-category">IRL</div>
-                            <div class="stream-viewers">7 viewers</div>
+                            <div class="stream-title">TalkShow</div>
+                            <div class="stream-category">Charlas</div>
+                            <div class="stream-viewers">390 viewers</div>
                         </div>
                     </div>
-                    <div class="stream-card">
-                        <img src="/assets/genericstreamerimage.jpg" alt="Stream 1" class="stream-thumb" />
+                    <div class="stream-card" data-category="Charlas">
+                        <img src="/assets/genericstreamerimage.jpg" alt="Talk Stream" class="stream-thumb" />
                         <div class="stream-info">
-                            <div class="stream-title">LuriShow</div>
-                            <div class="stream-category">IRL</div>
-                            <div class="stream-viewers">10 viewers</div>
+                            <div class="stream-title">PodcastLive</div>
+                            <div class="stream-category">Charlas</div>
+                            <div class="stream-viewers">280 viewers</div>
                         </div>
                     </div>
-                    <div class="stream-card">
-                        <img src="/assets/genericstreamerimage.jpg" alt="Stream 1" class="stream-thumb" />
+                    <div class="stream-card" data-category="Charlas">
+                        <img src="/assets/genericstreamerimage.jpg" alt="Talk Stream" class="stream-thumb" />
                         <div class="stream-info">
-                            <div class="stream-title">LuriShow</div>
-                            <div class="stream-category">IRL</div>
-                            <div class="stream-viewers">11 viewers</div>
-                        </div>
-                    </div>
-                    <div class="stream-card">
-                        <img src="/assets/genericstreamerimage.jpg" alt="Stream 1" class="stream-thumb" />
-                        <div class="stream-info">
-                            <div class="stream-title">LuriShow</div>
-                            <div class="stream-category">IRL</div>
-                            <div class="stream-viewers">12 viewers</div>
-                        </div>
-                    </div>
-                    <div class="stream-card">
-                        <img src="/assets/genericstreamerimage.jpg" alt="Stream 1" class="stream-thumb" />
-                        <div class="stream-info">
-                            <div class="stream-title">LuriShow</div>
-                            <div class="stream-category">IRL</div>
-                            <div class="stream-viewers">14 viewers</div>
-                        </div>
-                    </div>
-                    <div class="stream-card">
-                        <img src="/assets/genericstreamerimage.jpg" alt="Stream 1" class="stream-thumb" />
-                        <div class="stream-info">
-                            <div class="stream-title">LuriShow</div>
-                            <div class="stream-category">IRL</div>
-                            <div class="stream-viewers">14 viewers</div>
-                        </div>
-                    </div>
-                    <div class="stream-card">
-                        <img src="/assets/genericstreamerimage.jpg" alt="Stream 1" class="stream-thumb" />
-                        <div class="stream-info">
-                            <div class="stream-title">LuriShow</div>
-                            <div class="stream-category">IRL</div>
-                            <div class="stream-viewers">15 viewers</div>
+                            <div class="stream-title">DeepTalk</div>
+                            <div class="stream-category">Charlas</div>
+                            <div class="stream-viewers">210 viewers</div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- Sección Just Chatting -->
-            <div class="just-chatting">
-                <h1>Just Chatting</h1>
-            <div class="live-grid">
-                <!-- Tarjetas de streams de Just Chatting -->
-                <div class="stream-card">
-                    <img src="/assets/genericstreamerimage.jpg" alt="Stream 1" class="stream-thumb" />
-                    <div class="stream-info">
-                        <div class="stream-title">LuriShow</div>
-                        <div class="stream-category">IRL</div>
-                        <div class="stream-viewers">1 viewers</div>
-                    </div>
-                </div>
-                <div class="stream-card">
-                    <img src="/assets/genericstreamerimage.jpg" alt="Stream 2" class="stream-thumb" />
-                    <div class="stream-info">
-                        <div class="stream-title">Shadowki</div>
-                        <div class="stream-category">Just Chatting</div>
-                        <div class="stream-viewers">2 viewers</div>
-                    </div>
-                </div>
-                <div class="stream-card">
-                    <img src="/assets/genericstreamerimage.jpg" alt="Stream 3" class="stream-thumb" />
-                    <div class="stream-info">
-                        <div class="stream-title">MakanAx</div>
-                        <div class="stream-category">Música</div>
-                        <div class="stream-viewers">3 viewers</div>
-                    </div>
-                </div>
-                <div class="stream-card">
-                    <img src="/assets/genericstreamerimage.jpg" alt="Stream 4" class="stream-thumb" />
-                    <div class="stream-info">
-                        <div class="stream-title">PirulETv</div>
-                        <div class="stream-category">Arte</div>
-                        <div class="stream-viewers">4 viewers</div>
-                    </div>
-                </div>
-                <div class="stream-card">
-                    <img src="/assets/genericstreamerimage.jpg" alt="Stream 5" class="stream-thumb" />
-                    <div class="stream-info">
-                        <div class="stream-title">CamiloXX</div>
-                        <div class="stream-category">Charlas</div>
-                        <div class="stream-viewers">5 viewers</div>
-                    </div>
-                </div>
-                <div class="stream-card">
-                    <img src="/assets/genericstreamerimage.jpg" alt="Stream 1" class="stream-thumb" />
-                    <div class="stream-info">
-                        <div class="stream-title">LuriShow</div>
-                        <div class="stream-category">IRL</div>
-                        <div class="stream-viewers">6 viewers</div>
-                    </div>
-                </div>
-                <div class="stream-card">
-                    <img src="/assets/genericstreamerimage.jpg" alt="Stream 1" class="stream-thumb" />
-                    <div class="stream-info">
-                        <div class="stream-title">LuriShow</div>
-                        <div class="stream-category">IRL</div>
-                        <div class="stream-viewers">7 viewers</div>
-                    </div>
-                </div>
-                <div class="stream-card">
-                    <img src="/assets/genericstreamerimage.jpg" alt="Stream 1" class="stream-thumb" />
-                    <div class="stream-info">
-                        <div class="stream-title">LuriShow</div>
-                        <div class="stream-category">IRL</div>
-                        <div class="stream-viewers">8 viewers</div>
-                    </div>
-                </div>
-                <div class="stream-card">
-                    <img src="/assets/genericstreamerimage.jpg" alt="Stream 1" class="stream-thumb" />
-                    <div class="stream-info">
-                        <div class="stream-title">LuriShow</div>
-                        <div class="stream-category">IRL</div>
-                        <div class="stream-viewers">9 viewers</div>
-                    </div>
-                </div>
-                <div class="stream-card">
-                    <img src="/assets/genericstreamerimage.jpg" alt="Stream 1" class="stream-thumb" />
-                    <div class="stream-info">
-                        <div class="stream-title">LuriShow</div>
-                        <div class="stream-category">IRL</div>
-                        <div class="stream-viewers">10 viewers</div>
-                    </div>
-                </div>
-                <div class="stream-card">
-                    <img src="/assets/genericstreamerimage.jpg" alt="Stream 1" class="stream-thumb" />
-                    <div class="stream-info">
-                        <div class="stream-title">LuriShow</div>
-                        <div class="stream-category">IRL</div>
-                        <div class="stream-viewers">11 viewers</div>
-                    </div>
-                </div>
-                <div class="stream-card">
-                    <img src="/assets/genericstreamerimage.jpg" alt="Stream 1" class="stream-thumb" />
-                    <div class="stream-info">
-                        <div class="stream-title">LuriShow</div>
-                        <div class="stream-category">IRL</div>
-                        <div class="stream-viewers">12 viewers</div>
-                    </div>
-                </div>
-                <div class="stream-card">
-                    <img src="/assets/genericstreamerimage.jpg" alt="Stream 1" class="stream-thumb" />
-                    <div class="stream-info">
-                        <div class="stream-title">LuriShow</div>
-                        <div class="stream-category">IRL</div>
-                        <div class="stream-viewers">13 viewers</div>
-                    </div>
-                </div>
-                <div class="stream-card">
-                    <img src="/assets/genericstreamerimage.jpg" alt="Stream 1" class="stream-thumb" />
-                    <div class="stream-info">
-                        <div class="stream-title">LuriShow</div>
-                        <div class="stream-category">IRL</div>
-                        <div class="stream-viewers">14 viewers</div>
-                    </div>
-                </div>
-                <div class="stream-card">
-                    <img src="/assets/genericstreamerimage.jpg" alt="Stream 1" class="stream-thumb" />
-                    <div class="stream-info">
-                        <div class="stream-title">LuriShow</div>
-                        <div class="stream-category">IRL</div>
-                        <div class="stream-viewers">15 viewers</div>
-                    </div>
-                </div>
-            </div>
-
             </div>
         </main>
 
+
         <!-- Sidebar Derecho -->
-        <aside class="sidebar-right">
+         <aside class="sidebar-right">
             <div class="trends">
                 Tendencias
                 <span class="material-symbols-outlined">local_fire_department</span>
             </div>
-            <div class="menu-item">
+            <div class="menu-item filter-item" onclick="filterByCategory('all')" data-category="all">
+                <span>#</span>Todos
+            </div>
+            <div class="menu-item filter-item" onclick="filterByCategory('Videojuegos')" data-category="Videojuegos">
+                <span>#</span>Videojuegos
+            </div>
+            <div class="menu-item filter-item" onclick="filterByCategory('Just Chatting')" data-category="Just Chatting">
                 <span>#</span>Just Chatting
             </div>
-            <div class="menu-item">
+            <div class="menu-item filter-item" onclick="filterByCategory('IRL')" data-category="IRL">
                 <span>#</span>IRL
             </div>
-            <div class="menu-item">
-                <span>#</span>GTA V
+            <div class="menu-item filter-item" onclick="filterByCategory('Música')" data-category="Música">
+                <span>#</span>Música
             </div>
-            <div class="menu-item">
-                <span>#</span>Valorant
+            <div class="menu-item filter-item" onclick="filterByCategory('Arte')" data-category="Arte">
+                <span>#</span>Arte
+            </div>
+            <div class="menu-item filter-item" onclick="filterByCategory('Charlas')" data-category="Charlas">
+                <span>#</span>Charlas
             </div>
         </aside>
     </div>
     <script>
-document.querySelectorAll('.stream-card').forEach(card => {
-    card.style.cursor = "pointer";
-    card.addEventListener('click', function() {
-        window.location.href = "canal-display.html";
-    });
-});
-</script>
+        // Función para filtrar streams por categoría
+        function filterByCategory(category) {
+            const streamCards = document.querySelectorAll('.stream-card');
+            const filterItems = document.querySelectorAll('.filter-item');
+            const searchInput = document.getElementById('searchInput');
+            const sections = document.querySelectorAll('.category-section');
+            
+            // Limpiar búsqueda al usar filtros
+            searchInput.value = '';
+            document.getElementById('clearSearchBtn').style.display = 'none';
+            
+            // Remover clase activa de todos los filtros
+            filterItems.forEach(item => item.classList.remove('active'));
+            
+            // Agregar clase activa al filtro seleccionado
+            const activeFilter = document.querySelector(`[data-category="${category}"]`);
+            if (activeFilter) {
+                activeFilter.classList.add('active');
+            }
+            
+            // Mostrar/ocultar secciones completas según el filtro
+            sections.forEach(section => {
+                if (category === 'all') {
+                    section.style.display = 'block';
+                } else {
+                    const sectionId = section.id;
+                    const sectionCategory = getSectionCategory(sectionId);
+                    if (sectionCategory === category) {
+                        section.style.display = 'block';
+                    } else {
+                        section.style.display = 'none';
+                    }
+                }
+            });
+            
+            // Actualizar títulos de secciones
+            updateSectionTitles(category);
+            
+            // Remover mensaje de sin resultados
+            const existingMessage = document.querySelector('.no-results-message');
+            if (existingMessage) {
+                existingMessage.remove();
+            }
+        }
+        
+        // Función para obtener la categoría de una sección basada en su ID
+        function getSectionCategory(sectionId) {
+            const categoryMap = {
+                'videojuegos-section': 'Videojuegos',
+                'justchatting-section': 'Just Chatting',
+                'irl-section': 'IRL',
+                'musica-section': 'Música',
+                'arte-section': 'Arte',
+                'charlas-section': 'Charlas'
+            };
+            return categoryMap[sectionId] || '';
+        }
+        
+        // Función para actualizar títulos de secciones según el filtro
+        function updateSectionTitles(category) {
+            const sections = document.querySelectorAll('.category-section');
+            
+            sections.forEach(section => {
+                const title = section.querySelector('h1');
+                const sectionCategory = getSectionCategory(section.id);
+                
+                if (category === 'all') {
+                    title.textContent = sectionCategory;
+                } else if (sectionCategory === category) {
+                    title.textContent = `${category} - Streams en Vivo`;
+                }
+            });
+        }
+        
+        // Función para buscar streams por nombre
+        function searchStreams() {
+            const searchInput = document.getElementById('searchInput');
+            const clearBtn = document.getElementById('clearSearchBtn');
+            const searchTerm = searchInput.value.toLowerCase().trim();
+            const streamCards = document.querySelectorAll('.stream-card');
+            const filterItems = document.querySelectorAll('.filter-item');
+            const sections = document.querySelectorAll('.category-section');
+            
+            // Mostrar/ocultar botón de limpiar
+            if (searchTerm !== '') {
+                clearBtn.style.display = 'flex';
+                // Remover filtros activos durante búsqueda
+                filterItems.forEach(item => item.classList.remove('active'));
+            } else {
+                clearBtn.style.display = 'none';
+            }
+            
+            // Filtrar streams por nombre
+            streamCards.forEach(card => {
+                const streamTitle = card.querySelector('.stream-title')?.textContent.toLowerCase() || '';
+                const streamCategory = card.querySelector('.stream-category')?.textContent.toLowerCase() || '';
+                
+                if (searchTerm === '' || streamTitle.includes(searchTerm) || streamCategory.includes(searchTerm)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+            
+            // Mostrar/ocultar secciones según resultados de búsqueda
+            let totalVisible = 0;
+            sections.forEach(section => {
+                const visibleCards = section.querySelectorAll('.stream-card:not([style*="display: none"])');
+                if (visibleCards.length > 0) {
+                    section.style.display = 'block';
+                    totalVisible += visibleCards.length;
+                } else {
+                    section.style.display = 'none';
+                }
+            });
+            
+            // Actualizar títulos de secciones para búsqueda
+            updateSectionTitlesForSearch(searchTerm);
+            
+            // Mostrar mensaje si no hay resultados
+            showNoResultsMessage(totalVisible, searchTerm);
+        }
+        
+        // Función para actualizar títulos durante la búsqueda
+        function updateSectionTitlesForSearch(searchTerm) {
+            const sections = document.querySelectorAll('.category-section');
+            
+            sections.forEach(section => {
+                const title = section.querySelector('h1');
+                const sectionCategory = getSectionCategory(section.id);
+                
+                if (searchTerm === '') {
+                    title.textContent = sectionCategory;
+                } else {
+                    title.textContent = `${sectionCategory} - Resultados para "${searchTerm}"`;
+                }
+            });
+        }
+        
+        // Función para mostrar mensaje de sin resultados
+        function showNoResultsMessage(totalVisible, searchTerm) {
+            // Remover mensaje anterior si existe
+            const existingMessage = document.querySelector('.no-results-message');
+            if (existingMessage) {
+                existingMessage.remove();
+            }
+            
+            // Mostrar mensaje solo si hay búsqueda activa y no hay resultados
+            if (searchTerm !== '' && totalVisible === 0) {
+                const content = document.querySelector('.content');
+                const noResultsDiv = document.createElement('div');
+                noResultsDiv.className = 'no-results-message';
+                noResultsDiv.style.cssText = `
+                    text-align: center;
+                    padding: 40px;
+                    color: #666;
+                    font-size: 18px;
+                    background: rgba(1, 210, 252, 0.1);
+                    border-radius: 10px;
+                    margin: 20px 0;
+                `;
+                noResultsDiv.innerHTML = `
+                    <span class="material-symbols-outlined" style="font-size: 48px; color: #01D2FC; display: block; margin-bottom: 16px;">search_off</span>
+                    No se encontraron streams para "${searchTerm}"
+                    <br><small style="color: #999; margin-top: 8px; display: block;">Intenta con otro término de búsqueda</small>
+                `;
+                content.insertBefore(noResultsDiv, content.firstChild);
+            }
+        }
+        
+        // Función para manejar la tecla Enter en la búsqueda
+        function handleSearchKeyPress(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                searchStreams();
+            }
+        }
+        
+        // Función para limpiar la búsqueda
+        function clearSearch() {
+            const searchInput = document.getElementById('searchInput');
+            searchInput.value = '';
+            searchStreams();
+            // Reactivar filtro "Todos"
+            filterByCategory('all');
+        }
+        
+        // Inicializar filtro por defecto al cargar la página
+        document.addEventListener('DOMContentLoaded', function() {
+            // Activar el filtro "Todos" por defecto
+            filterByCategory('all');
+            
+            // Hacer que las tarjetas de stream sean clicables
+            document.querySelectorAll('.stream-card').forEach(card => {
+                card.style.cursor = "pointer";
+                card.addEventListener('click', function() {
+                    window.location.href = "canal-display.html";
+                });
+            });
+        });
+    </script>
 </body>
 </html>
