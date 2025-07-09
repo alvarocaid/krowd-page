@@ -1,0 +1,71 @@
+/* Estilos para el botón de seguir */
+.follow-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: #01D2FC;
+    color: white;
+}
+
+.follow-btn:hover {
+    background: #0199cc;
+    transform: translateY(-1px);
+}
+
+.follow-btn.following {
+    background: #4caf50;
+    color: white;
+}
+
+.follow-btn.following:hover {
+    background: #45a049;
+}
+
+.follow-btn .material-symbols-outlined {
+    font-size: 20px;
+}
+
+/* Animación para el cambio de estado */
+.follow-btn.animate {
+    animation: followPulse 0.6s ease-in-out;
+}
+
+@keyframes followPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+/* Notificación de seguimiento */
+.follow-notification {
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    background: #4caf50;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    z-index: 1000;
+    opacity: 0;
+    transform: translateX(100%);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.follow-notification.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.follow-notification .material-symbols-outlined {
+    font-size: 20px;
+}

@@ -7,79 +7,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
     <link rel="stylesheet" href="/style/styles.css" />
     <link rel="stylesheet" href="/style/canal-display.css" />
-    <style>
-        /* Estilos para el botón de seguir */
-        .follow-btn {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px 16px;
-            border: none;
-            border-radius: 6px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            background: #01D2FC;
-            color: white;
-        }
-        
-        .follow-btn:hover {
-            background: #0199cc;
-            transform: translateY(-1px);
-        }
-        
-        .follow-btn.following {
-            background: #4caf50;
-            color: white;
-        }
-        
-        .follow-btn.following:hover {
-            background: #45a049;
-        }
-        
-        .follow-btn .material-symbols-outlined {
-            font-size: 20px;
-        }
-        
-        /* Animación para el cambio de estado */
-        .follow-btn.animate {
-            animation: followPulse 0.6s ease-in-out;
-        }
-        
-        @keyframes followPulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
-        }
-        
-        /* Notificación de seguimiento */
-        .follow-notification {
-            position: fixed;
-            top: 80px;
-            right: 20px;
-            background: #4caf50;
-            color: white;
-            padding: 12px 20px;
-            border-radius: 8px;
-            font-weight: 600;
-            z-index: 1000;
-            opacity: 0;
-            transform: translateX(100%);
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .follow-notification.show {
-            opacity: 1;
-            transform: translateX(0);
-        }
-        
-        .follow-notification .material-symbols-outlined {
-            font-size: 20px;
-        }
-    </style>
+    <link rel="stylesheet" href="/style/follow-button.css" />
+    <link rel="stylesheet" href="/style/insufficient-credits-popup.css" />
 </head>
 <body>
 
@@ -302,6 +231,19 @@
     </div>
     <!-- Fin Popup de Canje Exitoso -->
 
+    <!-- Popup de Créditos Insuficientes -->
+    <div id="insufficientCreditsPopup" class="insufficient-credits-popup">
+        <div class="insufficient-credits-box">
+            <button class="insufficient-credits-close" onclick="closeInsufficientCreditsPopup()" title="Cerrar">&times;</button>
+            <span class="material-symbols-outlined insufficient-credits-icon">
+                money_off
+            </span>
+            <div class="insufficient-credits-message">¡Saldo insuficiente!</div>
+            <div class="insufficient-credits-desc">No tienes créditos suficientes para canjear esta recompensa.</div>
+        </div>
+    </div>
+    <!-- Fin Popup de Créditos Insuficientes -->
+
     <script>
 let adInterval;
 let credits = 0;
@@ -446,6 +388,15 @@ function closeRedeemPopup() {
     document.getElementById('redeemPopup').style.display = 'none';
 }
 
+// Mostrar popup de créditos insuficientes
+function showInsufficientCreditsPopup() {
+    document.getElementById('insufficientCreditsPopup').style.display = 'flex';
+}
+
+function closeInsufficientCreditsPopup() {
+    document.getElementById('insufficientCreditsPopup').style.display = 'none';
+}
+
 // Asigna el evento a todos los botones "Canjear"
 document.querySelectorAll('.reward-btn').forEach(btn => {
     btn.addEventListener('click', function(e) {
@@ -460,7 +411,7 @@ document.querySelectorAll('.reward-btn').forEach(btn => {
                 updateCreditsDisplay();
                 showRedeemPopup();
             } else {
-                alert('No tienes créditos suficientes para canjear esta recompensa.');
+                showInsufficientCreditsPopup();
             }
         }
     });
