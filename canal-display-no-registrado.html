@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Canal - Krowd</title>
+    <!-- Google Material Symbols -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+    <link rel="stylesheet" href="/style/styles.css" />
+    <link rel="stylesheet" href="/style/canal-display.css" />
+    <link rel="stylesheet" href="/style/login_popup.css">
+    <style>
+        /* Estilos para el botón de seguir */
+        .follow-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 16px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: #01D2FC;
+            color: white;
+        }
+        
+        .follow-btn:hover {
+            background: #0199cc;
+            transform: translateY(-1px);
+        }
+        
+        .follow-btn.following {
+            background: #4caf50;
+            color: white;
+        }
+        
+        .follow-btn.following:hover {
+            background: #45a049;
+        }
+        
+        .follow-btn .material-symbols-outlined {
+            font-size: 20px;
+        }
+        
+        /* Animación para el cambio de estado */
+        .follow-btn.animate {
+            animation: followPulse 0.6s ease-in-out;
+        }
+        
+        @keyframes followPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        /* Notificación de seguimiento */
+        .follow-notification {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            background: #4caf50;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            z-index: 1000;
+            opacity: 0;
+            transform: translateX(100%);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .follow-notification.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .follow-notification .material-symbols-outlined {
+            font-size: 20px;
+        }
+        
+        /* Estilos para el mensaje de login requerido */
+        .login-required-message {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 30px 20px;
+            background: #2a2d33;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+        
+        .login-required-message .login-btn:hover {
+            background: #0199cc !important;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar superior -->
+    <header class="navbar">
+        <div class="logo">Krowd</div>
+        <div class="search">
+            <span class="search-icon material-symbols-outlined">search</span>
+            <input type="search" placeholder="Buscar" class="search-input">
+        </div>
+        <button class="login" onclick="openPopup()">Login/Sign Up</button>
+
+    </header>
+
+    <div class="layout">
+        <!-- Sidebar Izquierdo -->
+        <aside class="sidebar-left">
+            <div class="menu">
+                <a href="index.html" class="menu-item" style="text-decoration:none; color:inherit;">
+                    Home
+                    <span class="material-symbols-outlined">home</span>
+                </a>
+            </div>
+            <div class="live-channels">
+                <h3>Canales en Vivo</h3>
+                <!-- Lista de canales en vivo -->
+                <div class="channel">
+                    <img src="/assets/streamer1.png" class="avatar" alt="LuriShow">
+                    <div class="info">
+                        <div class="name">LuriShow</div>
+                        <div class="category">IRL</div>
+                    </div>
+                    <div class="viewers"><span class="dot"></span>1K</div>
+                </div>
+                <div class="channel">
+                    <img src="/assets/streamer2.png" class="avatar" alt="Canal 2">
+                    <div class="info">
+                        <div class="name">Shadowki</div>
+                        <div class="category">Just Chatting</div>
+                    </div>
+                    <div class="viewers"><span class="dot"></span>500</div>
+                </div>
+                <div class="channel">
+                    <img src="/assets/streamer3.png" class="avatar" alt="Canal 3">
+                    <div class="info">
+                        <div class="name">MakanAx</div>
+                        <div class="category">Música</div>
+                    </div>
+                    <div class="viewers"><span class="dot"></span>2K</div>
+                </div>
+                <div class="channel">
+                    <img src="/assets/streamer4.png" class="avatar" alt="Canal 4">
+                    <div class="info">
+                        <div class="name">PirulETv</div>
+                        <div class="category">Arte</div>
+                    </div>
+                    <div class="viewers"><span class="dot"></span>300</div>
+                </div>
+                <div class="channel">
+                    <img src="/assets/streamer5.png" class="avatar" alt="Canal 5">
+                    <div class="info">
+                        <div class="name">CamiloXX</div>
+                        <div class="category">Charlas</div>
+                    </div>
+                    <div class="viewers"><span class="dot"></span>800</div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Contenido principal -->
+        <main class="content">
+            <div class="main-stream-area">
+                <div class="stream-video">
+                    <!-- Puedes reemplazar el img por un <video> si tienes el stream real -->
+                    <img src="/assets/canal-transmision.png" alt="Stream en vivo" style="width:100%;border-radius:12px;">
+                </div>
+                <div class="stream-info-bar">
+                    <div class="streamer-profile">
+                        <img src="/assets/streamer1.png" class="avatar" alt="ByteRaptor">
+                        <div>
+                            <div class="streamer-name">ByteRaptor</div>
+                            <div class="streamer-status">Jugando...</div>
+                            <div class="streamer-category">Videojuego</div>
+                        </div>
+                        <span class="live-badge">LIVE</span>
+                    </div>
+                    <div class="stream-actions">
+                        <button class="follow-btn" id="followBtn" onclick="showLoginToFollow()">
+                            <span id="followText">Seguir</span>
+                            <span class="material-symbols-outlined" id="followIcon">favorite_border</span>
+                        </button>
+                        <div class="viewers">
+                            <span class="material-symbols-outlined">groups</span>
+                            450 viewers
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Sidebar Derecho (Chat tipo Twitch) -->
+        <aside class="chat-sidebar">
+            <div class="chat-header">
+                CHAT EN VIVO
+            </div>
+            <div class="chat-messages">
+                <div class="chat-message"><span class="user" style="color:#ff7f50;">NekoFan33:</span> Esa jugada estuvo ÉPICA 🔥🔥🔥</div>
+                <div class="chat-message"><span class="user" style="color:#ffd700;">ProGamer77:</span> ¿Qué configuración de mouse usas?</div>
+                <div class="chat-message"><span class="user" style="color:#00e5ff;">Lau_Chan:</span> jajaja me morí con lo que dijiste 😂</div>
+                <div class="chat-message"><span class="user" style="color:#b388ff;">RataFPS:</span> saludos desde Chile bro 🇨🇱</div>
+                <div class="chat-message"><span class="user" style="color:#ff1744;">xXDarkModeXx:</span> dale otra oportunidad al sniper, ¡sí se puede!</div>
+                <div class="chat-message"><span class="user" style="color:#ff80ab;">AnaPixel:</span> ¿vas a hacer directo mañana también?</div>
+                <div class="chat-message"><span class="user" style="color:#fff;">ToxicNacho:</span> ¡ACTIVA LA CÁMARA QUE NO TE VEMOS! 😂</div>
+                <div class="chat-message"><span class="user" style="color:#64b5f6;">MarceloZzz:</span> llegó la noti justo cuando iba a dormir 😴</div>
+                <div class="chat-message"><span class="user" style="color:#ff7043;">elCompadre:</span> like si vienes por el clip viral de ayer</div>
+                <div class="chat-message"><span class="user" style="color:#fff176;">MafiusoYT:</span> ¡te ganaste mis 10 puntos bro, buen stream!</div>
+                <div class="chat-message"><span class="user" style="color:#00e676;">LuriNeo:</span> Te acabo de apoyar amigo</div>
+                <div class="chat-message"><span class="user" style="color:#fff;">Pinwelo:</span> Wow!</div>
+            </div>
+            <div class="chat-input-area">
+                <input type="text" class="chat-input" placeholder="Escribe un mensaje...">
+                <button class="chat-send-btn">
+                    <span class="material-symbols-outlined">send</span>
+                </button>
+            </div>
+            <div class="rewards-box">
+                <div class="login-required-message">
+                    <span class="material-symbols-outlined" style="font-size: 48px; color: #01D2FC; margin-bottom: 16px;">login</span>
+                    <div style="color: #fff; font-size: 18px; font-weight: 600; margin-bottom: 8px;">
+                        Inicia sesión para ver recompensas
+                    </div>
+                    <div style="color: #b3b3b3; font-size: 14px; margin-bottom: 20px; text-align: center;">
+                        Registrate o inicia sesión para acceder a las recompensas del canal
+                    </div>
+                    <button class="login-btn" onclick="openPopup()" style="background: #01D2FC; color: white; border: none; padding: 12px 24px; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%;">
+                        Login/Sign Up
+                    </button>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Popups de Login/Signup -->
+    <div id="loginPopup" class="popup-overlay" style="display:none;">
+        <div class="popup-box">
+            <button class="close-btn" onclick="closePopup()" title="Cerrar">&times;</button>
+            <div class="popup-header">
+                <h2>Log In</h2>
+            </div>
+            <form class="popup-form" onsubmit="event.preventDefault();login();">
+                <div class="input-label">
+                    <label for="usuario">Usuario</label>
+                </div>
+                <div class="input-group">
+                    <input type="text" id="usuario" autocomplete="username" required>
+                    <span class="material-symbols-outlined">account_circle</span>
+                </div>
+                <div class="input-label">
+                    <label for="clave">Contraseña</label>
+                </div>
+                <div class="input-group">
+                    <input type="password" id="clave" autocomplete="current-password" required>
+                    <span class="material-symbols-outlined">lock</span>
+                </div>
+                <button type="submit" class="login-btn">Log In</button>
+                
+                <!-- Separador -->
+                <div class="social-divider">
+                    <span>o continúa con</span>
+                </div>
+                
+                <!-- Botones de redes sociales -->
+                <div class="social-login">
+                    <button type="button" class="social-btn google-btn" onclick="loginWithGoogle()">
+                        <svg class="social-icon" viewBox="0 0 24 24">
+                            <path fill="#4285f4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                            <path fill="#34a853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                            <path fill="#fbbc05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                            <path fill="#ea4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                        </svg>
+                        Continuar con Google
+                    </button>
+                    
+                    <button type="button" class="social-btn facebook-btn" onclick="loginWithFacebook()">
+                        <svg class="social-icon" viewBox="0 0 24 24">
+                            <path fill="#1877f2" d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                        </svg>
+                        Continuar con Facebook
+                    </button>
+                </div>
+                
+               <div class="popup-footer">
+                    <a href="#" onclick="showSignupPopup('usuario');return false;">¿No tienes una cuenta? Crea una ahora.</a>
+                    <a href="#" onclick="showSignupPopup('creador');return false;">Regístrate como creador a nuestra plataforma</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <div id="errorPopup" class="error-popup-overlay" style="display:none;">
+        <div class="error-popup-box">
+            <button class="error-close-btn" onclick="closeErrorPopup()" title="Cerrar">
+                <span class="material-symbols-outlined" style="font-size:2rem;">close</span>
+            </button>
+            <div class="error-message">Correo o contraseña inválidos.</div>
+            <div class="error-cancel-icon">
+                <span class="material-symbols-outlined" style="font-size:3rem;">cancel</span>
+            </div>
+        </div>
+    </div>
+    
+    <div id="signupPopup" class="popup-overlay" style="display:none;">
+        <div class="popup-box signup-box">
+            <button class="close-btn" onclick="closeSignupPopup()" title="Cerrar">&times;</button>
+            <div class="popup-header">
+                <h2 style="color:#01D2FC;">Sign Up</h2>
+            </div>
+            <form class="popup-form" onsubmit="event.preventDefault(); signup();">
+                <div class="input-label"><label for="signup-email">Email</label></div>
+                <div class="input-group">
+                    <input id="signup-email" type="email" placeholder="Email">
+                    <span class="material-symbols-outlined">mail</span>
+                </div>
+                <div class="input-label"><label for="signup-username">Username</label></div>
+                <div class="input-group">
+                    <input id="signup-username" type="text" placeholder="Username">
+                    <span class="material-symbols-outlined">person</span>
+                </div>
+                <div class="input-label"><label for="signup-password">Contraseña</label></div>
+                <div class="input-group">
+                    <input id="signup-password" type="password" placeholder="Contraseña">
+                    <span class="material-symbols-outlined">vpn_key</span>
+                </div>
+                <div class="input-label"><label for="signup-password2">Confirmar contraseña</label></div>
+                <div class="input-group">
+                    <input id="signup-password2" type="password" placeholder="Confirmar contraseña">
+                    <span class="material-symbols-outlined">vpn_key</span>
+                </div>
+                <button type="submit" class="login-btn">Sign Up</button>
+            </form>
+        </div>
+    </div>
+    
+    <div id="welcomePopup" class="error-popup-overlay" style="display:none;">
+        <div class="error-popup-box">
+            <button class="welcome-close-btn" onclick="closeWelcomePopup()" title="Cerrar">
+                <span class="material-symbols-outlined" style="font-size:2rem;">close</span>
+            </button>
+            <div class="error-message" id="welcomeMessage" style="color:#01D2FC;text-align:center;font-size:1.2rem;">
+                <!-- Mensaje dinámico aquí -->
+            </div>
+            <div class="error-cancel-icon">
+                <span class="material-symbols-outlined" style="font-size:3rem;">handshake</span>
+            </div>
+        </div>
+    </div>
+    
+    <div id="signupErrorPopup" class="error-popup-overlay" style="display:none;">
+        <div class="error-popup-box">
+            <button class="signup-error-close-btn" onclick="closeSignupErrorPopup()" title="Cerrar">
+                <span class="material-symbols-outlined" style="font-size:2rem;">close</span>
+            </button>
+            <div class="error-message" id="signupErrorMessage" style="color:#ff2d2d;text-align:center;font-size:1.2rem;">
+                <!-- Mensaje dinámico aquí -->
+            </div>
+            <div class="error-cancel-icon">
+                <span class="material-symbols-outlined" style="font-size:3rem;">cancel</span>
+            </div>
+        </div>
+    </div>
+    <!-- Fin Popups de Login/Signup -->
+
+    <script>
+let isFollowing = false;
+let signupType = "usuario";
+
+// Funciones de Login/Signup
+function openPopup() {
+    document.getElementById("loginPopup").style.display = "flex";
+}
+
+function closePopup() {
+    document.getElementById("loginPopup").style.display = "none";
+}
+
+function openErrorPopup() {
+    document.getElementById("errorPopup").style.display = "flex";
+}
+
+function closeErrorPopup() {
+    document.getElementById("errorPopup").style.display = "none";
+}
+
+function openSignupPopup() {
+    document.getElementById("signupPopup").style.display = "flex";
+}
+
+function closeSignupPopup() {
+    document.getElementById("signupPopup").style.display = "none";
+}
+
+function login() {
+    const usuario = document.getElementById("usuario").value;
+    const clave = document.getElementById("clave").value;
+
+    if (usuario === "admin" && clave === "1234") {
+        window.location.href = "user-home.html";
+    } else {
+        openErrorPopup();
+    }
+}
+
+function showSignupPopup(type = "usuario") {
+    signupType = type;
+    closePopup();
+    document.getElementById("signupPopup").style.display = "flex";
+}
+
+function closeWelcomePopup() {
+    document.getElementById("welcomePopup").style.display = "none";
+    if (signupType === "creador") {
+        window.location.href = "user-Panel-Creadores.html";
+    } else {
+        window.location.href = "user-home.html";
+    }
+}
+
+function closeSignupErrorPopup() {
+    document.getElementById("signupErrorPopup").style.display = "none";
+}
+
+function signup() {
+    const email = document.getElementById("signup-email").value.trim();
+    const username = document.getElementById("signup-username").value.trim();
+    const password = document.getElementById("signup-password").value;
+    const password2 = document.getElementById("signup-password2").value;
+
+    if (!email || !username || !password || !password2 || password !== password2) {
+        document.getElementById("signupErrorMessage").innerHTML = "Verifica que todos los campos sean válidos.";
+        document.getElementById("signupErrorPopup").style.display = "flex";
+        return;
+    }
+
+    closeSignupPopup();
+    if (signupType === "creador") {
+        window.location.href = "user-Panel-Creadores.html";
+    } else {
+        window.location.href = "user-home.html";
+    }
+}
+
+function loginWithGoogle() {
+    closePopup();
+    setTimeout(() => {
+        window.location.href = 'user-home.html';
+    }, 500);
+}
+
+function loginWithFacebook() {
+    closePopup();
+    setTimeout(() => {
+        window.location.href = 'user-home.html';
+    }, 500);
+}
+
+// Función para mostrar popup de login cuando se intenta seguir
+function showLoginToFollow() {
+    openPopup();
+}
+
+// Función para cargar el estado de seguimiento desde localStorage
+function loadFollowState() {
+    const streamerName = 'ByteRaptor';
+    const savedState = localStorage.getItem(`following_${streamerName}`);
+    
+    if (savedState === 'true') {
+        isFollowing = true;
+        const followBtn = document.getElementById('followBtn');
+        const followText = document.getElementById('followText');
+        const followIcon = document.getElementById('followIcon');
+        
+        followText.textContent = 'Siguiendo';
+        followIcon.textContent = 'favorite';
+        followBtn.classList.add('following');
+    }
+}
+
+// Función para guardar el estado de seguimiento en localStorage
+function saveFollowState() {
+    const streamerName = 'ByteRaptor';
+    localStorage.setItem(`following_${streamerName}`, isFollowing.toString());
+}
+
+// Función para mostrar notificación de seguimiento
+function showFollowNotification(message, icon) {
+    let notification = document.getElementById('followNotification');
+    if (!notification) {
+        notification = document.createElement('div');
+        notification.id = 'followNotification';
+        notification.className = 'follow-notification';
+        document.body.appendChild(notification);
+    }
+    
+    notification.innerHTML = `
+        <span class="material-symbols-outlined">${icon}</span>
+        ${message}
+    `;
+    
+    notification.classList.add('show');
+    
+    setTimeout(() => {
+        notification.classList.remove('show');
+    }, 3000);
+}
+
+window.onload = function() {
+    loadFollowState();
+};
+</script>
+
+</body>
+</html>
