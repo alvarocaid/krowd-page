@@ -7,6 +7,79 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
     <link rel="stylesheet" href="/style/styles.css" />
     <link rel="stylesheet" href="/style/canal-display.css" />
+    <style>
+        /* Estilos para el botón de seguir */
+        .follow-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 16px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: #01D2FC;
+            color: white;
+        }
+        
+        .follow-btn:hover {
+            background: #0199cc;
+            transform: translateY(-1px);
+        }
+        
+        .follow-btn.following {
+            background: #4caf50;
+            color: white;
+        }
+        
+        .follow-btn.following:hover {
+            background: #45a049;
+        }
+        
+        .follow-btn .material-symbols-outlined {
+            font-size: 20px;
+        }
+        
+        /* Animación para el cambio de estado */
+        .follow-btn.animate {
+            animation: followPulse 0.6s ease-in-out;
+        }
+        
+        @keyframes followPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        /* Notificación de seguimiento */
+        .follow-notification {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            background: #4caf50;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            z-index: 1000;
+            opacity: 0;
+            transform: translateX(100%);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .follow-notification.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .follow-notification .material-symbols-outlined {
+            font-size: 20px;
+        }
+    </style>
 </head>
 <body>
 
@@ -117,7 +190,10 @@
                         <span class="live-badge">LIVE</span>
                     </div>
                     <div class="stream-actions">
-                        <button class="follow-btn">Seguir <span class="material-symbols-outlined">favorite</span></button>
+                        <button class="follow-btn" id="followBtn" onclick="toggleFollow()">
+                            <span id="followText">Seguir</span>
+                            <span class="material-symbols-outlined" id="followIcon">favorite_border</span>
+                        </button>
                         <div class="viewers">
                             <span class="material-symbols-outlined">groups</span>
                             450 viewers
@@ -229,6 +305,95 @@
     <script>
 let adInterval;
 let credits = 0;
+let isFollowing = false;
+
+// Función para cargar el estado de seguimiento desde localStorage
+function loadFollowState() {
+    const streamerName = 'ByteRaptor'; // Nombre del streamer actual
+    const savedState = localStorage.getItem(`following_${streamerName}`);
+    
+    if (savedState === 'true') {
+        isFollowing = true;
+        const followBtn = document.getElementById('followBtn');
+        const followText = document.getElementById('followText');
+        const followIcon = document.getElementById('followIcon');
+        
+        followText.textContent = 'Siguiendo';
+        followIcon.textContent = 'favorite';
+        followBtn.classList.add('following');
+    }
+}
+
+// Función para guardar el estado de seguimiento en localStorage
+function saveFollowState() {
+    const streamerName = 'ByteRaptor'; // Nombre del streamer actual
+    localStorage.setItem(`following_${streamerName}`, isFollowing.toString());
+}
+
+// Función para cambiar el estado de seguimiento
+function toggleFollow() {
+    const followBtn = document.getElementById('followBtn');
+    const followText = document.getElementById('followText');
+    const followIcon = document.getElementById('followIcon');
+    
+    // Agregar animación
+    followBtn.classList.add('animate');
+    
+    if (!isFollowing) {
+        // Cambiar a estado "Siguiendo"
+        isFollowing = true;
+        followText.textContent = 'Siguiendo';
+        followIcon.textContent = 'favorite';
+        followBtn.classList.add('following');
+        
+        // Mostrar notificación
+        showFollowNotification('¡Ahora sigues a ByteRaptor!', 'favorite');
+        
+    } else {
+        // Cambiar a estado "Seguir"
+        isFollowing = false;
+        followText.textContent = 'Seguir';
+        followIcon.textContent = 'favorite_border';
+        followBtn.classList.remove('following');
+        
+        // Mostrar notificación
+        showFollowNotification('Has dejado de seguir a ByteRaptor', 'heart_broken');
+    }
+    
+    // Guardar estado
+    saveFollowState();
+    
+    // Remover animación después de completarse
+    setTimeout(() => {
+        followBtn.classList.remove('animate');
+    }, 600);
+}
+
+// Función para mostrar notificación de seguimiento
+function showFollowNotification(message, icon) {
+    // Crear elemento de notificación si no existe
+    let notification = document.getElementById('followNotification');
+    if (!notification) {
+        notification = document.createElement('div');
+        notification.id = 'followNotification';
+        notification.className = 'follow-notification';
+        document.body.appendChild(notification);
+    }
+    
+    // Configurar contenido
+    notification.innerHTML = `
+        <span class="material-symbols-outlined">${icon}</span>
+        ${message}
+    `;
+    
+    // Mostrar notificación
+    notification.classList.add('show');
+    
+    // Ocultar después de 3 segundos
+    setTimeout(() => {
+        notification.classList.remove('show');
+    }, 3000);
+}
 
 // Busca el elemento de créditos en la navbar
 function updateCreditsDisplay() {
@@ -301,14 +466,18 @@ document.querySelectorAll('.reward-btn').forEach(btn => {
     });
 });
 
-// Inicializa los créditos al cargar la página
+// Inicializa los créditos y el estado de seguimiento al cargar la página
 window.onload = function() {
+    // Cargar créditos
     const creditsItem = Array.from(document.querySelectorAll('.user-info .user-item')).find(el => el.textContent.includes('Créditos'));
     if (creditsItem) {
         const match = creditsItem.textContent.match(/(\d+)\s*Créditos/);
         credits = match ? parseInt(match[1], 10) : 0;
         updateCreditsDisplay();
     }
+    
+    // Cargar estado de seguimiento
+    loadFollowState();
 };
 </script>
 
