@@ -27,3 +27,17 @@
     border-radius: 6px;
     padding: 0 4px;
 }
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 24px; /* o menos si quieres aún más a la izquierda */
+    /* ...otros estilos que ya tengas... */
+}
+
+.logo {
+    margin-left: 0;
+    padding-left: 0;
+    /* Si tienes margen o padding, ponlos en 0 */
+}
