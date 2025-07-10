@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
     <!-- Google Material Symbols -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
@@ -12,6 +13,9 @@
 
     <!-- Navbar superior -->
     <header class="navbar">
+        <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+            <span class="material-symbols-outlined">menu</span>
+        </button>
         <div class="logo">Krowd</div>
         <div class="search">
             <span class="search-icon material-symbols-outlined">search</span>
@@ -35,6 +39,9 @@
         </div>
 
     </header>
+
+    <!-- Mobile menu overlay -->
+    <div class="mobile-overlay" onclick="closeMobileMenu()"></div>
 
     <div class="layout">
         <!-- Sidebar Izquierdo -->
@@ -107,26 +114,6 @@
                 <a href="Problem_Report.html" class="config-link">Reportar un problema</a>
             </div>
         </main>
-
-        <!-- Sidebar Derecho -->
-        <aside class="sidebar-right">
-            <div class="trends">
-                Tendencias
-                <span class="material-symbols-outlined">local_fire_department</span>
-            </div>
-            <div class="menu-item">
-                <span>#</span>Just Chatting
-            </div>
-            <div class="menu-item">
-                <span>#</span>IRL
-            </div>
-            <div class="menu-item">
-                <span>#</span>GTA V
-            </div>
-            <div class="menu-item">
-                <span>#</span>Valorant
-            </div>
-        </aside>
     </div>
 
 </body>
@@ -141,6 +128,51 @@
         ¡Agradecemos su feedback!
     </p>
 </div>
+<script>
+// Mobile menu functions
+function toggleMobileMenu() {
+    console.log('Toggle mobile menu called');
+    const sidebar = document.querySelector('.sidebar-left');
+    const overlay = document.querySelector('.mobile-overlay');
+    
+    console.log('Sidebar found:', sidebar);
+    console.log('Overlay found:', overlay);
+    
+    if (sidebar && overlay) {
+        sidebar.classList.toggle('mobile-open');
+        overlay.classList.toggle('active');
+        
+        console.log('Sidebar classes:', sidebar.className);
+        console.log('Overlay classes:', overlay.className);
+    }
+}
+
+function closeMobileMenu() {
+    console.log('Close mobile menu called');
+    const sidebar = document.querySelector('.sidebar-left');
+    const overlay = document.querySelector('.mobile-overlay');
+    
+    if (sidebar && overlay) {
+        sidebar.classList.remove('mobile-open');
+        overlay.classList.remove('active');
+    }
+}
+
+// Close mobile menu when clicking on a menu item
+document.addEventListener('DOMContentLoaded', function() {
+    const menuItems = document.querySelectorAll('.sidebar-left .menu-item, .sidebar-left .channel');
+    menuItems.forEach(item => {
+        item.addEventListener('click', closeMobileMenu);
+    });
+});
+
+// Handle window resize
+window.addEventListener('resize', function() {
+    if (window.innerWidth > 768) {
+        closeMobileMenu();
+    }
+});
+</script>
 <script src="Configuracion-home.js"></script>
 
 
