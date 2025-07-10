@@ -26,6 +26,9 @@
                 <span class="material-symbols-outlined">person</span>
                 xXCamiloXx
             </div>
+            <button class="logout-btn" onclick="window.location.href='index.html'" title="Cerrar sesión">
+                <span class="material-symbols-outlined">logout</span>
+            </button>
         </div>
 
     </header>
@@ -69,9 +72,9 @@
                 </div>
                 <div class="menu-item">
                          <a href="item-configuracion.html" style="display: flex; align-items: center; color: inherit; text-decoration: none;">
-                     <img src="assets/configuracion.png" alt="Configuración" class="icono">
-                          Configuración
-                      </a>
+                        <span class="material-symbols-outlined" style="margin-right:12px;">credit_card</span>
+                         Método de pago
+                     </a>
                  </div>
                 <div class="menu-item">
                     <img src="assets/herramientas.png" alt="Herramientas de streaming" class="icono">
@@ -82,8 +85,10 @@
                     Extensiones
                 </div>
                 <div class="menu-item">
-                    <img src="assets/centro.png" alt="Centro de Seguridad" class="icono">
-                    Centro de Seguridad
+                    <a href="CentroSeguridad.html" style="display: flex; align-items: center; color: inherit; text-decoration: none;">
+                        <img src="assets/centro.png" alt="Centro de Seguridad" class="icono">
+                        Centro de Seguridad
+                    </a>
                 </div>
                 <div class="menu-item">
                     <a href="configurar-transmision.html" style="display: flex; align-items: center; color: inherit; text-decoration: none;">
@@ -151,52 +156,6 @@
            
         </aside>
     </div>
-
-    <script>
-        const toggle = document.getElementById('rewardToggle');
-        const statusMessage = document.getElementById('statusMessage');
-
-        toggle.addEventListener('change', function() {
-            if (this.checked) {
-                statusMessage.className = 'green-text';
-                statusMessage.textContent = 'Recibiras ingresos en el apartado de analisis';
-            } else {
-                statusMessage.className = 'error-text';
-                statusMessage.textContent = 'No recibiras ingresos';
-            }
-        });
-    </script>
-    <script>
-    // Selecciona el formulario y los inputs
-    const form = document.querySelector('.main-content form');
-    const inputs = form.querySelectorAll('input[type="text"]');
-    const button = form.querySelector('button[type="submit"]');
-
-    // Crea el mensaje si no existe
-    let msg = document.createElement('span');
-    msg.style.display = "none";
-    msg.style.marginLeft = "16px";
-    msg.style.verticalAlign = "middle";
-    form.appendChild(msg);
-
-    form.addEventListener('submit', function(e) {
-        e.preventDefault(); // Evita recargar la página
-        let allFilled = true;
-        inputs.forEach(input => {
-            if (input.value.trim().length < 1) {
-                allFilled = false;
-            }
-        });
-        if (allFilled) {
-            msg.textContent = "Método de pago registrado exitosamente. Ya puedes recibir tus ingresos.";
-            msg.style.color = "limegreen";
-            msg.style.display = "inline-block";
-        } else {
-            msg.textContent = "Verifica los datos ingresados";
-            msg.style.color = "crimson";
-            msg.style.display = "inline-block";
-        }
-    });
-</script>
+    <script src="scripts/MetodoPago_UserPanelCreador.js"></script>
 </body>
 </html>

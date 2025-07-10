@@ -56,7 +56,7 @@
             <div class="live-channels">
                 <h3>Canales en Vivo</h3>
                 <!-- Lista de canales en vivo -->
-                <div class="channel">
+                <div class="channel" onclick="window.location.href='canal-display.html'" style="cursor: pointer;">
                     <img src="/assets/streamer1.png" class="avatar" alt="LuriShow">
                     <div class="info">
                         <div class="name">LuriShow</div>
@@ -64,7 +64,7 @@
                     </div>
                     <div class="viewers"><span class="dot"></span>1K</div>
                 </div>
-                <div class="channel">
+                <div class="channel" onclick="window.location.href='canal-display.html'" style="cursor: pointer;">
                     <img src="/assets/streamer2.png" class="avatar" alt="Canal 2">
                     <div class="info">
                         <div class="name">Shadowki</div>
@@ -72,7 +72,7 @@
                     </div>
                     <div class="viewers"><span class="dot"></span>500</div>
                 </div>
-                <div class="channel">
+                <div class="channel" onclick="window.location.href='canal-display.html'" style="cursor: pointer;">
                     <img src="/assets/streamer3.png" class="avatar" alt="Canal 3">
                     <div class="info">
                         <div class="name">MakanAx</div>
@@ -80,7 +80,7 @@
                     </div>
                     <div class="viewers"><span class="dot"></span>2K</div>
                 </div>
-                <div class="channel">
+                <div class="channel" onclick="window.location.href='canal-display.html'" style="cursor: pointer;">
                     <img src="/assets/streamer4.png" class="avatar" alt="Canal 4">
                     <div class="info">
                         <div class="name">PirulETv</div>
@@ -88,7 +88,7 @@
                     </div>
                     <div class="viewers"><span class="dot"></span>300</div>
                 </div>
-                <div class="channel">
+                <div class="channel" onclick="window.location.href='canal-display.html'" style="cursor: pointer;">
                     <img src="/assets/streamer5.png" class="avatar" alt="Canal 5">
                     <div class="info">
                         <div class="name">CamiloXX</div>
@@ -140,27 +140,47 @@
                     <a href="#" class="suggested-btn">Ver Canal</a>
                 </div>
             </div>
-        </main>
-        <!-- Sidebar Derecho -->
-        <aside class="sidebar-right">
-            <div class="trends">
-                Tendencias
-                <span class="material-symbols-outlined">local_fire_department</span>
-            </div>
-            <div class="menu-item">
-                <span>#</span>Just Chatting
-            </div>
-            <div class="menu-item">
-                <span>#</span>IRL
-            </div>
-            <div class="menu-item">
-                <span>#</span>GTA V
-            </div>
-            <div class="menu-item">
-                <span>#</span>Valorant
-            </div>
-        </aside>
     </div>
+
+    <!-- Modal para mostrar información del canal -->
+    <div class="modal-overlay" id="channelModal">
+        <div class="modal">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <div class="modal-header">
+                <img src="" class="modal-avatar" alt="" id="modalAvatar">
+                <div class="modal-info">
+                    <h2 id="modalName"></h2>
+                    <p id="modalDesc"></p>
+                    <span class="modal-tag" id="modalTag"></span>
+                </div>
+            </div>
+            <div class="modal-stats">
+                <div class="modal-stat">
+                    <span class="modal-stat-value" id="modalFollowers">0</span>
+                    <span class="modal-stat-label">Seguidores</span>
+                </div>
+                <div class="modal-stat">
+                    <span class="modal-stat-value" id="modalViews">0</span>
+                    <span class="modal-stat-label">Visualizaciones</span>
+                </div>
+                <div class="modal-stat">
+                    <span class="modal-stat-value" id="modalStreams">0</span>
+                    <span class="modal-stat-label">Transmisiones</span>
+                </div>
+            </div>
+            <div class="modal-content">
+                <h3>Acerca del canal</h3>
+                <p id="modalAbout"></p>
+                <h3>Horario de transmisión</h3>
+                <p id="modalSchedule"></p>
+            </div>
+            <button class="modal-follow-btn" onclick="toggleFollow()" id="modalFollowBtn">
+                Seguir
+            </button>
+        </div>
+    </div>
+
+    <script src="scripts/creadores-sugeridos.js"></script>
 
 </body>
 </html>

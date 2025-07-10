@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
     <link rel="stylesheet" href="/style/styles.css" />
     <link rel="stylesheet" href="/style/canal-display.css" />
+    <link rel="stylesheet" href="/style/follow-button.css" />
+    <link rel="stylesheet" href="/style/insufficient-credits-popup.css" />
 </head>
 <body>
 
@@ -103,8 +105,12 @@
         <main class="content">
             <div class="main-stream-area">
                 <div class="stream-video">
-                    <!-- Puedes reemplazar el img por un <video> si tienes el stream real -->
-                    <img src="/assets/canal-transmision.png" alt="Stream en vivo" style="width:100%;border-radius:12px;">
+                    <!-- Video de stream en vivo con fallback a imagen del streamer -->
+                    <video id="streamVideo" autoplay muted loop style="width:100%;border-radius:12px;" onError="fallbackToStreamerImage()">
+                        <source src="/assets/streamervideo.mp4" type="video/mp4">
+                        Su navegador no soporta el elemento video.
+                    </video>
+                    <img id="streamFallback" src="/assets/streamer1.png" alt="Stream en vivo" style="width:100%;border-radius:12px;display:none;">
                 </div>
                 <div class="stream-info-bar">
                     <div class="streamer-profile">
@@ -117,7 +123,10 @@
                         <span class="live-badge">LIVE</span>
                     </div>
                     <div class="stream-actions">
-                        <button class="follow-btn">Seguir <span class="material-symbols-outlined">favorite</span></button>
+                        <button class="follow-btn" id="followBtn" onclick="toggleFollow()">
+                            <span id="followText">Seguir</span>
+                            <span class="material-symbols-outlined" id="followIcon">favorite_border</span>
+                        </button>
                         <div class="viewers">
                             <span class="material-symbols-outlined">groups</span>
                             450 viewers
@@ -226,91 +235,20 @@
     </div>
     <!-- Fin Popup de Canje Exitoso -->
 
-    <script>
-let adInterval;
-let credits = 0;
+    <!-- Popup de Créditos Insuficientes -->
+    <div id="insufficientCreditsPopup" class="insufficient-credits-popup">
+        <div class="insufficient-credits-box">
+            <button class="insufficient-credits-close" onclick="closeInsufficientCreditsPopup()" title="Cerrar">&times;</button>
+            <span class="material-symbols-outlined insufficient-credits-icon">
+                money_off
+            </span>
+            <div class="insufficient-credits-message">¡Saldo insuficiente!</div>
+            <div class="insufficient-credits-desc">No tienes créditos suficientes para canjear esta recompensa.</div>
+        </div>
+    </div>
+    <!-- Fin Popup de Créditos Insuficientes -->
 
-// Busca el elemento de créditos en la navbar
-function updateCreditsDisplay() {
-    const creditsItem = Array.from(document.querySelectorAll('.user-info .user-item')).find(el => el.textContent.includes('Créditos'));
-    if (creditsItem) {
-        creditsItem.innerHTML = `<span class="material-symbols-outlined">stars</span> ${credits} Créditos`;
-    }
-}
-
-function showAdPopup() {
-    document.getElementById('adPopup').style.display = 'flex';
-    let seconds = 5;
-    document.getElementById('adTimer').textContent = `0:0${seconds}`;
-    document.getElementById('closeAdBtn').style.display = 'none';
-    // Mensaje inicial
-    const adMsg = document.querySelector('#adPopup .popup-box > div > div:nth-child(4)');
-    adMsg.textContent = 'Gracias por apoyar al creador';
-    adMsg.style.color = '#fff';
-    adInterval = setInterval(() => {
-        seconds--;
-        document.getElementById('adTimer').textContent = `0:0${seconds}`;
-        if (seconds <= 0) {
-            clearInterval(adInterval);
-            document.getElementById('adTimer').textContent = '0:00';
-            document.getElementById('closeAdBtn').style.display = 'block';
-            adMsg.textContent = '¡Ganaste +10 créditos!';
-            adMsg.style.color = '#01D2FC';
-        }
-    }, 1000);
-}
-
-function closeAdPopup() {
-    document.getElementById('adPopup').style.display = 'none';
-    clearInterval(adInterval);
-    // Suma 10 créditos solo si el mensaje de ganaste créditos está visible
-    const adMsg = document.querySelector('#adPopup .popup-box > div > div:nth-child(4)');
-    if (adMsg.textContent.includes('Ganaste')) {
-        credits += 10;
-        updateCreditsDisplay();
-    }
-}
-
-// Mostrar popup de canje exitoso
-function showRedeemPopup() {
-    document.getElementById('redeemPopup').style.display = 'flex';
-    // Ya NO se cierra solo, solo con el botón de cerrar
-}
-
-function closeRedeemPopup() {
-    document.getElementById('redeemPopup').style.display = 'none';
-}
-
-// Asigna el evento a todos los botones "Canjear"
-document.querySelectorAll('.reward-btn').forEach(btn => {
-    btn.addEventListener('click', function(e) {
-        e.preventDefault();
-        // Obtener el costo de la recompensa
-        const costSpan = this.parentElement.querySelector('.reward-cost');
-        if (costSpan) {
-            const match = costSpan.textContent.match(/(\d+)/);
-            const cost = match ? parseInt(match[1], 10) : 0;
-            if (credits >= cost) {
-                credits -= cost;
-                updateCreditsDisplay();
-                showRedeemPopup();
-            } else {
-                alert('No tienes créditos suficientes para canjear esta recompensa.');
-            }
-        }
-    });
-});
-
-// Inicializa los créditos al cargar la página
-window.onload = function() {
-    const creditsItem = Array.from(document.querySelectorAll('.user-info .user-item')).find(el => el.textContent.includes('Créditos'));
-    if (creditsItem) {
-        const match = creditsItem.textContent.match(/(\d+)\s*Créditos/);
-        credits = match ? parseInt(match[1], 10) : 0;
-        updateCreditsDisplay();
-    }
-};
-</script>
+    <script src="scripts/canal-display.js"></script>
 
 </body>
 </html>

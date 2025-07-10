@@ -33,7 +33,6 @@
                 <span class="material-symbols-outlined">logout</span>
             </button>
         </div>
-
     </header>
 
     <div class="layout">
@@ -56,7 +55,7 @@
             <div class="live-channels">
                 <h3>Canales en Vivo</h3>
                 <!-- Lista de canales en vivo -->
-                <div class="channel">
+                <div class="channel" onclick="window.location.href='canal-display.html'" style="cursor: pointer;">
                     <img src="/assets/streamer1.png" class="avatar" alt="LuriShow">
                     <div class="info">
                         <div class="name">LuriShow</div>
@@ -64,7 +63,7 @@
                     </div>
                     <div class="viewers"><span class="dot"></span>1K</div>
                 </div>
-                <div class="channel">
+                <div class="channel" onclick="window.location.href='canal-display.html'" style="cursor: pointer;">
                     <img src="/assets/streamer2.png" class="avatar" alt="Canal 2">
                     <div class="info">
                         <div class="name">Shadowki</div>
@@ -72,7 +71,7 @@
                     </div>
                     <div class="viewers"><span class="dot"></span>500</div>
                 </div>
-                <div class="channel">
+                <div class="channel" onclick="window.location.href='canal-display.html'" style="cursor: pointer;">
                     <img src="/assets/streamer3.png" class="avatar" alt="Canal 3">
                     <div class="info">
                         <div class="name">MakanAx</div>
@@ -80,7 +79,7 @@
                     </div>
                     <div class="viewers"><span class="dot"></span>2K</div>
                 </div>
-                <div class="channel">
+                <div class="channel" onclick="window.location.href='canal-display.html'" style="cursor: pointer;">
                     <img src="/assets/streamer4.png" class="avatar" alt="Canal 4">
                     <div class="info">
                         <div class="name">PirulETv</div>
@@ -88,7 +87,7 @@
                     </div>
                     <div class="viewers"><span class="dot"></span>300</div>
                 </div>
-                <div class="channel">
+                <div class="channel" onclick="window.location.href='canal-display.html'" style="cursor: pointer;">
                     <img src="/assets/streamer5.png" class="avatar" alt="Canal 5">
                     <div class="info">
                         <div class="name">CamiloXX</div>
@@ -107,27 +106,8 @@
                 <a href="Problem_Report.html" class="config-link">Reportar un problema</a>
             </div>
         </main>
-
-        <!-- Sidebar Derecho -->
-        <aside class="sidebar-right">
-            <div class="trends">
-                Tendencias
-                <span class="material-symbols-outlined">local_fire_department</span>
-            </div>
-            <div class="menu-item">
-                <span>#</span>Just Chatting
-            </div>
-            <div class="menu-item">
-                <span>#</span>IRL
-            </div>
-            <div class="menu-item">
-                <span>#</span>GTA V
-            </div>
-            <div class="menu-item">
-                <span>#</span>Valorant
-            </div>
-        </aside>
     </div>
+
 </body>
 </html>
 
@@ -140,38 +120,6 @@
         ¡Agradecemos su feedback!
     </p>
 </div>
+<script src="scripts/Configuracion-home.js"></script>
 
-<script>
-const form = document.getElementById('reportForm');
-const popup = document.getElementById('report-popup');
-const backdrop = document.getElementById('popup-backdrop');
-const input = form.querySelector('.report-input');
-const popupMessage = document.getElementById('popup-message');
 
-form.addEventListener('submit', function(e) {
-    e.preventDefault();
-    if (input.value.trim() === '') {
-        showPopup(
-            `<span class="popup-title popup-error">Usted hizo entrega de un formulario vacio.</span><br>
-            <span class="popup-error">Porfavor, agregue una sencilla descripción si tuvo algun incoveniente</span>`
-        );
-    } else {
-        showPopup(
-            `<span class="popup-title">Usted hizo entrega de un reporte</span><br>
-            ¡Agradecemos su feedback!`
-        );
-        input.value = '';
-    }
-});
-
-function showPopup(message) {
-    popupMessage.innerHTML = message;
-    popup.style.display = 'flex';
-    backdrop.style.display = 'block';
-}
-
-function closePopup() {
-    popup.style.display = 'none';
-    backdrop.style.display = 'none';
-}
-</script>
